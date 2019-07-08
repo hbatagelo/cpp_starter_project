@@ -9,3 +9,7 @@ else()
 endif()
   
 target_compile_features(intro PRIVATE cxx_std_17)
+
+enable_testing()
+add_executable(tester src/tester.cpp)
+add_test(Tester tester)
