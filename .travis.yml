@@ -1,6 +1,9 @@
-dist: trusty
+dist: xenial
 sudo: false
 language: cpp
+compiler:
+  - clang
+  - gcc
 
 script:
   - cmake .
