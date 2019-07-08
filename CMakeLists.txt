@@ -1,10 +1,11 @@
 cmake_minimum_required (VERSION 3.10)
 
+add_executable(intro src/main.cpp)
+
 if (MSVC)
-  add_compile_options(/W4)
+  target_compile_options(intro PRIVATE /W4)
 else()
-  add_compile_options(-Wall -Wextra -Wpedantic)
+  target_compile_options(intro PRIVATE -Wall -Wextra -Wpedantic)
 endif()
   
-add_executable(intro src/main.cpp)
-target_compile_features(intro PRIVATE cxx_lambda_init_captures)
+target_compile_features(intro PRIVATE cxx_std_17)
