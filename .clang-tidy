@@ -3,6 +3,8 @@
 
 Checks: '*,
 	-google-runtime-references,
+	-abseil*,
+	-android*,
 	-fuchsia*,
 	-readability-else-after-return,
 	-readability-avoid-const-params-in-decls,
