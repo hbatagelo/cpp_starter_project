@@ -2,7 +2,8 @@ cmake_minimum_required (VERSION 3.10)
 
 add_executable(intro src/main.cpp)
 
-if (CMAKE_COMPILER_IS_GNUCC)
+# Using clang or gcc
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   option(ENABLE_COVERAGE "Enable coverage reporting for gcc/clang" ON)
 
   if (ENABLE_COVERAGE)
@@ -19,7 +20,13 @@ endif()
   
 target_compile_features(intro PRIVATE cxx_std_17)
 
+# Tests
 enable_testing()
+
 add_executable(tester src/tester.cpp)
-target_link_libraries(tester PRIVATE --coverage)
+
+if (NOT MSVC)
+  target_link_libraries(tester PRIVATE --coverage)
+endif()
+
 add_test(Tester tester)
