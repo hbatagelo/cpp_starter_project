@@ -3,7 +3,7 @@ cmake_minimum_required (VERSION 3.10)
 add_executable(intro src/main.cpp)
 
 if (CMAKE_COMPILER_IS_GNUCC)
-  option(ENABLE_COVERAGE "Enable coverage reporting for gcc/clang" FALSE)
+  option(ENABLE_COVERAGE "Enable coverage reporting for gcc/clang" ON)
 
   if (ENABLE_COVERAGE)
     target_compile_options(intro PRIVATE --coverage -O0)

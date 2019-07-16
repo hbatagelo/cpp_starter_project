@@ -6,7 +6,7 @@ compiler:
   - gcc
 
 script:
-  - cmake -DENABLE_COVERAGE:BOOL=TRUE .
+  - cmake -DENABLE_COVERAGE=ON .
   - cmake --build . -- -j2
   - ctest -j2
 
