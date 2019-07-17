@@ -1,15 +1,18 @@
-dist: xenial
-sudo: false
 language: cpp
+os: linux
 compiler:
   - clang
   - gcc
 
-script:
-  - cmake -DENABLE_COVERAGE=ON .
-  - cmake --build . -- -j2
-  - ctest -j2
+script: ./build.sh
 
 after_success:
-- bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
-  
+  # Creating report
+  - cd ${TRAVIS_BUILD_DIR}
+  - lcov --version
+  - lcov --capture --directory . --output-file coverage.info
+  - lcov --remove coverage.info '/usr/*' "${HOME}" --output-file coverage.info # filter system-files
+  - lcov --list coverage.info #debug info
+  # Uploading report to CodeCov
+  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+

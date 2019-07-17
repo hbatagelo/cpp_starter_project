@@ -5,9 +5,4 @@
 build
 
 # Local build script
-# rm -f *~
-# rm -rf build
-# mkdir -p build
-# cd build
-# ccmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER="/usr/local/llvm/bin/clang" -DCMAKE_CXX_COMPILER="/usr/local/llvm/bin/clang++" ..
-configure.sh
+build.sh
