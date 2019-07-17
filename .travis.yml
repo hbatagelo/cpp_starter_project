@@ -4,10 +4,14 @@ compiler:
   - clang
   - gcc
 
+addons:
+  apt:
+    packages: lcov
+
 script: ./build.sh
 
 after_success:
-  # Creating report
+  # Creating coverage report
   - cd ${TRAVIS_BUILD_DIR}
   - lcov --version
   - lcov --capture --directory . --output-file coverage.info
