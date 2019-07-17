@@ -2,7 +2,4 @@
 .vscode
 
 # Build directory
-build
-
-# Local build script
-build.sh
+build/
