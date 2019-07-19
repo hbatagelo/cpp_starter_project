@@ -1,22 +1,39 @@
 language: cpp
 os: linux
-compiler:
-  - clang
-  - gcc
+dist: xenial
 
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-      - llvm-toolchain-xenial-8
-    packages: 
-      - g++-9
-      - clang-8
-      - lcov
+branches:
+  only:
+    - master
+
+matrix:
+  include:
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-xenial-8
+          packages:
+            - clang-8
+            - lcov
+      env:
+        - CXX=clang++-8
+
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-9
+            - lcov
+      env:
+        - CXX=g++-9
 
 script: 
   - ./build.sh
-  - cd ${TRAVIS_BUILD_DIR}  
+    #- cd ${TRAVIS_BUILD_DIR}  
 
 after_success:
   # Creating coverage report
