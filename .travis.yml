@@ -6,6 +6,9 @@ compiler:
 
 addons:
   apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-xenial-8
     packages: 
       - g++-9
       - clang-8
