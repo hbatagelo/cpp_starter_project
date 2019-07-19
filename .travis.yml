@@ -6,7 +6,10 @@ compiler:
 
 addons:
   apt:
-    packages: lcov
+    packages: 
+      - g++-9
+      - clang-8
+      - lcov
 
 script: 
   - ./build.sh

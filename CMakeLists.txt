@@ -40,7 +40,7 @@ if (UNIX)
 elseif (WIN32)
   add_custom_command(
     TARGET ${EXECUTABLE} POST_BUILD
-    COMMAND ${CMAKE_CURRENT_BINARY_DIR}/${EXECUTABLE} > NUL
+    COMMAND ${CMAKE_CURRENT_BINARY_DIR}/${EXECUTABLE}.exe > NUL
     COMMENT "Running application..."
   )
 endif()
