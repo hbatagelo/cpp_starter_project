@@ -8,7 +8,9 @@ addons:
   apt:
     packages: lcov
 
-script: ./build.sh
+script: 
+  - ./build.sh
+  - cd ${TRAVIS_BUILD_DIR}  
 
 after_success:
   # Creating coverage report

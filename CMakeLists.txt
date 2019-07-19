@@ -1,30 +1,54 @@
 cmake_minimum_required (VERSION 3.10)
 
-add_executable(intro src/main.cpp)
+project(cpp_starter_project LANGUAGES CXX)
+
+set(SOURCE_DIR src)
+set(EXECUTABLE intro)
+set(TEST_EXECUTABLE tester)
+
+add_executable(${EXECUTABLE} ${SOURCE_DIR}/main.cpp)
 
 # Using Clang or GCC
-if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
   option(CODE_COVERAGE "Enable coverage reporting for gcc/clang" OFF)
 
   if (CODE_COVERAGE)
-    target_compile_options(intro PRIVATE --coverage -O0 -g)
-    target_link_libraries(intro PRIVATE --coverage)
+    target_compile_options(${EXECUTABLE} PRIVATE --coverage -O0 -g)
+    target_link_libraries(${EXECUTABLE} PRIVATE --coverage)
   endif()
 endif()
 
 # Using Visual Studio
 if (MSVC)
-  target_compile_options(intro PRIVATE /W4)
+  target_compile_options(${EXECUTABLE} PRIVATE /W4)
 else()
-  target_compile_options(intro PRIVATE -Wall -Wextra -Wpedantic)
+  target_compile_options(${EXECUTABLE} PRIVATE -Wall -Wextra -Wpedantic)
 endif()
-  
-target_compile_features(intro PRIVATE cxx_std_17)
+
+# Use C++17
+target_compile_features(${EXECUTABLE} PRIVATE cxx_std_17)
+
+# Post build
+if (UNIX)
+  add_custom_command(
+    TARGET ${EXECUTABLE} POST_BUILD
+    COMMAND ${CMAKE_CURRENT_BINARY_DIR}/${EXECUTABLE} > /dev/null  
+    #COMMAND ${CMAKE_COMMAND} -E echo ${CMAKE_CURRENT_BINARY_DIR}
+    #WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMENT "Running application..."    
+  )
+elseif (WIN32)
+  add_custom_command(
+    TARGET ${EXECUTABLE} POST_BUILD
+    COMMAND ${CMAKE_CURRENT_BINARY_DIR}/${EXECUTABLE} > NUL
+    COMMENT "Running application..."
+  )
+endif()
 
 # Tests
 option(BUILD_TESTING "Build the testing tree" ON)
 if (BUILD_TESTING)
   enable_testing()
-  add_executable(tester src/tester.cpp)
-  add_test(Tester tester)
+  add_executable(${TEST_EXECUTABLE} ${SOURCE_DIR}/tester.cpp)
+  add_test(Tester ${TEST_EXECUTABLE})
 endif()

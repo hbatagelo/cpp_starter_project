@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# Reset build
+# Create build directory
 mkdir -p build && cd build
 
 # Configure
