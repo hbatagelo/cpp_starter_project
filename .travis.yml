@@ -6,6 +6,10 @@ branches:
   only:
     - master
 
+cache: # see https://docs.travis-ci.com/user/caching/
+  - directories:
+    - $HOME/.cache
+
 matrix:
   include:
     - compiler: clang
@@ -34,12 +38,13 @@ script:
   - ./build.sh  
 
 after_success:
-  # Creating coverage report
-  #- cd ${TRAVIS_BUILD_DIR}
-  #- lcov --version
-  #- lcov --capture --directory . --output-file coverage.info
-  #- lcov --remove coverage.info '/usr/*' "${HOME}" --output-file coverage.info # filter system-files
-  #- lcov --list coverage.info #debug info
-  # Uploading report to CodeCov
-  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+  - test $TRAVIS_COMPILER = "gcc" &&
+    # Creating coverage report
+    #- cd ${TRAVIS_BUILD_DIR}
+    #- lcov --version
+    lcov --capture --directory . --output-file coverage.info &&
+    lcov --remove coverage.info '/usr/*' "${HOME}" '/.cache/*' --output-file coverage.info &&
+    lcov --list coverage.info &&
+    # Uploading report to CodeCov
+    bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
 
