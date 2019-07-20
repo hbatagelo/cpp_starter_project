@@ -16,7 +16,6 @@ matrix:
             - llvm-toolchain-xenial-8
           packages:
             - clang-8
-            - lcov
       env:
         - CXX=clang++-8
 
@@ -32,16 +31,15 @@ matrix:
         - CXX=g++-9
 
 script: 
-  - ./build.sh
-    #- cd ${TRAVIS_BUILD_DIR}  
+  - ./build.sh  
 
 after_success:
   # Creating coverage report
-  - cd ${TRAVIS_BUILD_DIR}
-  - lcov --version
-  - lcov --capture --directory . --output-file coverage.info
-  - lcov --remove coverage.info '/usr/*' "${HOME}" --output-file coverage.info # filter system-files
-  - lcov --list coverage.info #debug info
+  #- cd ${TRAVIS_BUILD_DIR}
+  #- lcov --version
+  #- lcov --capture --directory . --output-file coverage.info
+  #- lcov --remove coverage.info '/usr/*' "${HOME}" --output-file coverage.info # filter system-files
+  #- lcov --list coverage.info #debug info
   # Uploading report to CodeCov
   - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
 

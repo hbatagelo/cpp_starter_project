@@ -8,9 +8,9 @@ set(TEST_EXECUTABLE tester)
 
 add_executable(${EXECUTABLE} ${SOURCE_DIR}/main.cpp)
 
-# Using Clang or GCC
-if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
-  option(CODE_COVERAGE "Enable coverage reporting for gcc/clang" OFF)
+# Using GCC
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+  option(CODE_COVERAGE "Enable coverage reporting for gcc" OFF)
 
   if (CODE_COVERAGE)
     target_compile_options(${EXECUTABLE} PRIVATE --coverage -O0 -g)
@@ -29,19 +29,13 @@ endif()
 target_compile_features(${EXECUTABLE} PRIVATE cxx_std_17)
 
 # Post build
-if (UNIX)
+if (UNIX AND CODE_COVERAGE)
   add_custom_command(
     TARGET ${EXECUTABLE} POST_BUILD
     COMMAND ${CMAKE_CURRENT_BINARY_DIR}/${EXECUTABLE} > /dev/null  
     #COMMAND ${CMAKE_COMMAND} -E echo ${CMAKE_CURRENT_BINARY_DIR}
     #WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    COMMENT "Running application..."    
-  )
-elseif (WIN32)
-  add_custom_command(
-    TARGET ${EXECUTABLE} POST_BUILD
-    COMMAND ${CMAKE_CURRENT_BINARY_DIR}/${EXECUTABLE}.exe > NUL
-    COMMENT "Running application..."
+    COMMENT "Post build execution"    
   )
 endif()
 
