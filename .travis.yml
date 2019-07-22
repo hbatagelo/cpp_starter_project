@@ -39,13 +39,13 @@ script:
 
 after_success:
   - |
+    # Create coverage reporting (gcc only)
     if [ "$TRAVIS_COMPILER" == "gcc" ]; then
-      # Creating coverage report
-      #- cd ${TRAVIS_BUILD_DIR}
-      #- lcov --version
+      cd ${TRAVIS_BUILD_DIR}
+      lcov --version
       lcov --capture --directory . --output-file coverage.info
       lcov --remove coverage.info '/usr/*' "${HOME}" '/.cache/*' --output-file coverage.info
       lcov --list coverage.info
-      # Uploading report to CodeCov
+      # Uploading report to Codecov
       bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
     fi
