@@ -38,7 +38,7 @@ script:
   - ./build.sh  
 
 after_success:
-  - test $TRAVIS_COMPILER = "gcc" &&
+  if ([ "$TRAVIS_COMPILER" == "gcc" ]; then
     # Creating coverage report
     #- cd ${TRAVIS_BUILD_DIR}
     #- lcov --version
@@ -47,4 +47,4 @@ after_success:
     lcov --list coverage.info &&
     # Uploading report to CodeCov
     bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
-
+  fi
