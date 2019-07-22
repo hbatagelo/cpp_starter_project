@@ -38,7 +38,7 @@ script:
   - ./build.sh  
 
 after_success:
-  if ([ "$TRAVIS_COMPILER" == "gcc" ]; then
+  if [ "$TRAVIS_COMPILER" == "gcc" ]; then
     # Creating coverage report
     #- cd ${TRAVIS_BUILD_DIR}
     #- lcov --version
