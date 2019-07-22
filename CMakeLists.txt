@@ -29,7 +29,7 @@ endif()
 target_compile_features(${EXECUTABLE} PRIVATE cxx_std_17)
 
 # Post build
-if (UNIX AND CODE_COVERAGE)
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CODE_COVERAGE)
   add_custom_command(
     TARGET ${EXECUTABLE} POST_BUILD
     COMMAND ${CMAKE_CURRENT_BINARY_DIR}/${EXECUTABLE} > /dev/null  
