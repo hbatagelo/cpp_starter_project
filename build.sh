@@ -2,7 +2,6 @@
 set -euo pipefail
 
 # Create build directory
-rm -rf build
 mkdir -p build && cd build
 
 # Configure

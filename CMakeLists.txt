@@ -22,6 +22,7 @@ endif()
 
 # Using Visual Studio
 if (MSVC)
+  set(CMAKE_SUPPRESS_REGENERATION true)
   target_compile_options(${PROJ_TARGET} PRIVATE /MP /W4)
 else()
   target_compile_options(${PROJ_TARGET} PRIVATE -Wall -Wextra -Wpedantic)

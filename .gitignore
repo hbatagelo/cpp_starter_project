@@ -1,7 +1,10 @@
-# Visual Studio and Visual Studio Code
+# Cache/options directory used by Visual Studio and Visual Studio Code
 .vs
 .vscode
 
 # Build directories
-build/
-vs2019/
+build
+vs2019
+
+# CMake build configuration used by Visual Studio
+CMakeSettings.json
