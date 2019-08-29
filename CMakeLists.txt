@@ -22,7 +22,7 @@ endif()
 
 # Using Visual Studio
 if (MSVC)
-  target_compile_options(${PROJ_TARGET} PRIVATE /W4)
+  target_compile_options(${PROJ_TARGET} PRIVATE /MP /W4)
 else()
   target_compile_options(${PROJ_TARGET} PRIVATE -Wall -Wextra -Wpedantic)
 endif()

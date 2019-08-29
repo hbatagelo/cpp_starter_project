@@ -1,5 +1,7 @@
-# Visual Studio Code
+# Visual Studio and Visual Studio Code
+.vs
 .vscode
 
-# Build directory
+# Build directories
 build/
+vs2019/
