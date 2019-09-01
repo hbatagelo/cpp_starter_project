@@ -1,4 +1,4 @@
-# Code copied from https://crascit.com/2015/07/25/cmake-gtest/
+# Adapted after https://crascit.com/2015/07/25/cmake-gtest/
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
 project(gtest-download NONE)

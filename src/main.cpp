@@ -1,9 +1,15 @@
-#include <functional>
 #include <iostream>
 
+#include "foo.hpp"
+
 int main() {
-  try {
-    [out = std::ref(std::cout << "Hello ")]() { out.get() << "World 2\n"; }();
-  } catch (...) {
-  }
+  std::cout << "do stuff" << std::endl;
+
+  int x = 4;
+  std::cout << x << std::endl;
+
+  std::cout << independentMethod(x) << std::endl;
+
+  Foo p;
+  std::cout << p.bar(x) << std::endl;
 }

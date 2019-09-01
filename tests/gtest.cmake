@@ -18,7 +18,7 @@ macro(fetch_gtest _download_module_path _download_root)
     WORKING_DIRECTORY ${_download_root}
   )
 
-  # adds the targers: gtest, gtest_main, gmock, gmock_main
+  # adds the targets: gtest, gtest_main, gmock, gmock_main
   add_subdirectory(
     ${_download_root}/gtest-src
     ${_download_root}/gtest-build

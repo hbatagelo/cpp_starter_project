@@ -8,4 +8,3 @@ build_script:
   - cmd: cmake --build . --config "Debug"
 test_script:
   - cmd: ctest -C Debug
-  

@@ -5,16 +5,16 @@
 ---------
 A minimal cross-platform c++ project with continuous integration. Based on the [homonymous project](https://github.com/lefticus/cpp_starter_project) by Jason Turner.
 
-## Dependencies
+## Build Requirements
 
-* CMake 3.10
-* C++ 17 or higher
+  * [CMake](https://cmake.org)
+  * C++17-standard-compliant compiler
 
 ## Installation
 
 On Linux:
 
-```
+```sh
 git clone https://github.com/hbatagelo/cpp_starter_project
 cd cpp_starter_project
 bash build.sh
@@ -24,7 +24,7 @@ After building, you should be able to run it via `./build/intro`.
 
 On Windows with MSVC:
 
-```
+```bat
 git clone https://github.com/hbatagelo/cpp_starter_project
 cd cpp_starter_project
 mkdir build

@@ -1,7 +1,7 @@
 ---
 # Configure clang-tidy for this project.
 
-Checks: '*,-abseil*,-android*,-fuchsia*'
+Checks: '*,-abseil*,-android*,-fuchsia*,-bugprone-exception-escape'
 
 WarningsAsErrors: '*'
 
@@ -11,4 +11,3 @@ AnalyzeTemporaryDtors: false
 
 FormatStyle: llvm
 ...
-
