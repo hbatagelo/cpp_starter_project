@@ -7,8 +7,8 @@ A minimal cross-platform c++ project with continuous integration. Based on the [
 
 ## Build Requirements
 
-* [CMake](https://cmake.org)
-* C++17-standard-compliant compiler
+*   [CMake](https://cmake.org)
+*   C++17-standard-compliant compiler
 
 ## Installation
 

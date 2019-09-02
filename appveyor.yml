@@ -1,17 +1,33 @@
 # Build worker image (VM template)
 image:
-  - Visual Studio 2017
+- Visual Studio 2017
 
 # Clone directory
 clone_folder: c:\projects\source
 
+install:
+- set ORIGIN_PATH=%cd%
+- set PATH=%PATH%;c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\
+- git submodule update --init --recursive
+- cd ..
+- git clone https://github.com/google/googletest.git
+- cd googletest
+- cmake -G "Visual Studio 14 2015" .
+- devenv.exe googletest\msvc\gtest-md.sln /Upgrade
+- devenv.exe googletest\msvc\gtest-md.sln /Build
+- mkdir googletest\lib
+- copy googletest\msvc\gtest-md\Debug\gtestd.lib googletest\lib\gtest.lib
+- copy googletest\msvc\gtest-md\Debug\gtest_main-mdd.lib googletest\lib\gtest_main.lib
+- set GTEST_ROOT=%cd%\googletest
+- cd %ORIGIN_PATH%
+
 # Custom build script
 build_script:
-  - cmd: mkdir build
-  - cmd: cd build
-  - cmd: cmake c:\projects\source -G "Visual Studio 15"
-  - cmd: cmake --build . --config "Debug"
+- mkdir build
+- cd build
+- cmake c:\projects\source -G "Visual Studio 15"
+- cmake --build . --config "Debug"
 
 # Custom test script
 test_script:
-#  - cmd: ctest -C Debug
+- ctest -C Debug -VV
