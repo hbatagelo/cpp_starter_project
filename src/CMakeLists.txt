@@ -18,23 +18,19 @@ endif()
 target_compile_features(${PROJLIB_TARGET} PRIVATE cxx_std_17)
 
 # Code coverage configuration
-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-  if (CODE_COVERAGE)
-    target_compile_options(
-      ${PROJLIB_TARGET} INTERFACE 
-	    --coverage # Coverage flags
-	    -O0        # No optimization
-	    -g         # Generate debug info
-	  )
-	if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
-	  target_link_options(${PROJLIB_TARGET} INTERFACE --coverage)
-    else()
-      target_link_libraries(${PROJLIB_TARGET} INTERFACE --coverage)
-    endif()
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CODE_COVERAGE)
+  target_compile_options(
+    ${PROJLIB_TARGET} PRIVATE 
+    --coverage # Coverage flags
+    -O0        # No optimization
+    -g         # Generate debug info
+  )
+  if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
+    target_link_options(${PROJLIB_TARGET} INTERFACE --coverage)
+  else()
+    target_link_libraries(${PROJLIB_TARGET} INTERFACE --coverage)
   endif()
 endif()
-
-
 
 # Executable
 add_executable(${PROJ_TARGET} main.cpp)
@@ -56,8 +52,6 @@ endif()
 target_compile_features(${PROJ_TARGET} PRIVATE cxx_std_17)
 
 target_link_libraries(${PROJ_TARGET} PRIVATE ${PROJLIB_TARGET})
-
-
 
 # Post build
 #if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CODE_COVERAGE)

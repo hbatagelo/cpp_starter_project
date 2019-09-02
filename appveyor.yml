@@ -1,10 +1,17 @@
+# Build worker image (VM template)
 image:
   - Visual Studio 2017
+
+# Clone directory
 clone_folder: c:\projects\source
+
+# Custom build script
 build_script:
   - cmd: mkdir build
   - cmd: cd build
   - cmd: cmake c:\projects\source -G "Visual Studio 15"
   - cmd: cmake --build . --config "Debug"
+
+# Custom test script
 test_script:
-  - cmd: ctest -C Debug
+#  - cmd: ctest -C Debug

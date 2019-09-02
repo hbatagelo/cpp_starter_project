@@ -21,7 +21,7 @@ if [ ! -z "$COV" ]; then # Does CMake's cache has CODE_COVERAGE:BOOL=ON?
     if command -v lcov >/dev/null 2>&1; then # Does lcov exist?
         printf '\n'
         echo -e "\e[93m-- Generating lcov info\e[39m"
-        lcov --capture --base-directory . --directory . --output-file coverage_unfiltered.info
+        lcov --capture --directory . --output-file coverage_unfiltered.info
         echo -e "\e[93m-- Filtering out dependencies\e[39m"
         lcov --remove coverage_unfiltered.info $PWD'/gtest/*' '/usr/*' --output-file coverage.info
         echo -e "\e[93m-- Generating HTML report\e[39m"
@@ -29,3 +29,5 @@ if [ ! -z "$COV" ]; then # Does CMake's cache has CODE_COVERAGE:BOOL=ON?
         echo -e "\e[93m-- Generating done\e[39m"
     fi
 fi
+
+#--base-directory .

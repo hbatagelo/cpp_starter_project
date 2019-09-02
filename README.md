@@ -7,8 +7,8 @@ A minimal cross-platform c++ project with continuous integration. Based on the [
 
 ## Build Requirements
 
-  * [CMake](https://cmake.org)
-  * C++17-standard-compliant compiler
+* [CMake](https://cmake.org)
+* C++17-standard-compliant compiler
 
 ## Installation
 
@@ -17,23 +17,23 @@ On Linux:
 ```sh
 git clone https://github.com/hbatagelo/cpp_starter_project
 cd cpp_starter_project
-bash build.sh
+./build.sh
 ```
 
-After building, you should be able to run it via `./build/intro`.
+After building, run it with `./build/intro`.
 
-On Windows with MSVC:
+On Windows (MSVC 14.2):
 
 ```bat
 git clone https://github.com/hbatagelo/cpp_starter_project
 cd cpp_starter_project
 mkdir build
 cd build
-cmake -G "Visual Studio 16" .. # Visual Studio 2019
+cmake -G "Visual Studio 16" ..
 cmake --build . --config "Release"
 ```
 
-The solution file for Visual Studio 2019 can be generated with `gen_vs_ln.bat` and are output to `./vs2019/`. If you are a user of [Clang Power Tools](https://clangpowertools.com/download.html) and are receiving errors when running clang-format or clang-tidy, try opening the solution file generated with `gen_vs_ln.bat` instead of using the `Clone or check out code` or `Open a local folder` options from the startup dialog (tested with MSVC and clang-cl).
+To generate a solution file for Visual Studio (2019), run `gen_vs_ln.bat`. The output is written to `./vs2019/`. If you use [Clang Power Tools](https://clangpowertools.com/download.html) and receive errors when running clang-format or clang-tidy, try opening the solution file generated with `gen_vs_ln.bat` instead of using the `Clone or check out code` or `Open a local folder` options from the startup dialog (tested with MSVC and clang-cl).
 
 ## License
 
