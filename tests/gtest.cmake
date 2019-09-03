@@ -18,6 +18,10 @@ macro(fetch_gtest _download_module_path _download_root)
     WORKING_DIRECTORY ${_download_root}
   )
 
+  # Prevent GoogleTest from overriding our compiler/linker options
+  # when building with Visual Studio
+  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
   # adds the targets: gtest, gtest_main, gmock, gmock_main
   add_subdirectory(
     ${_download_root}/gtest-src

@@ -9,7 +9,7 @@ ExternalProject_Add(gtest
   SOURCE_DIR "@GTEST_DOWNLOAD_ROOT@/gtest-src"
   BINARY_DIR "@GTEST_DOWNLOAD_ROOT@/gtest-build"
   GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG release-1.8.1
+  GIT_TAG master
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""
