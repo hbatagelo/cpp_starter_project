@@ -26,5 +26,5 @@ test_script:
 - ctest -C Debug -VV
 
 artifacts:
-- path: '\src\Debug\intro.exe'
+- path: 'build\src\Debug\intro.exe'
   name: cpp_starter_project
