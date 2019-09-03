@@ -1,8 +1,10 @@
 include(gtest.cmake)
-fetch_gtest(
-  ${PROJECT_SOURCE_DIR}/tests
-  ${PROJECT_BINARY_DIR}/gtest
-)
+if (NOT MSVC)
+  fetch_gtest(
+    ${PROJECT_SOURCE_DIR}/tests
+    ${PROJECT_BINARY_DIR}/gtest
+  )
+endif()
 
 add_executable(${TEST_TARGET} tester.cpp)
 

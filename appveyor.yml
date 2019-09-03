@@ -21,10 +21,6 @@ install:
 - cmake -G "Visual Studio 16 2019" .
 - devenv googletest\gtest.sln /Upgrade
 - devenv googletest\gtest.sln /Build
-#- mkdir googletest\lib
-#- copy googletest\gtest\Debug\gtestd.lib googletest\lib\gtest.lib
-#- copy googletest\gtest\Debug\gtest_main-mdd.lib googletest\lib\gtest_main.lib
-#- set GTEST_ROOT=%cd%\googletest
 - set GTEST_ROOT=%cd%
 - cd %ORIGIN_PATH%
 
