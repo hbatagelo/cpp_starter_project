@@ -1,13 +1,12 @@
 version: 1.0.{build}
-os: Visual Studio 2019
-
-environment:
-  matrix:
-  - ARCH: x64
 
 # Build worker image (VM template)
 image:
 - Visual Studio 2019
+
+environment:
+  matrix:
+  - ARCH: x64
 
 # Clone directory
 clone_folder: c:\projects\source
@@ -19,12 +18,12 @@ build_script:
 - mkdir build
 - cd build
 - cmake c:\projects\source -G "Visual Studio 16 2019"
-- cmake --build . --config "Debug"
+- cmake --build . --config "Release"
 
 # Custom test script
 test_script:
-- ctest -C Debug -VV
+- ctest -C Release -VV
 
 artifacts:
-- path: 'build\src\Debug\intro.exe'
+- path: 'build\src\Release\intro.exe'
   name: cpp_starter_project
