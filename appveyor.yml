@@ -25,10 +25,6 @@ build_script:
 test_script:
 - ctest -C Debug -VV
 
-build:
-  parallel: true
-  verbosity: minimal
-
 artifacts:
 - path: '\src\intro'
   name: cpp_starter_project
