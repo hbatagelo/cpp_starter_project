@@ -1,6 +1,6 @@
-# Proj library
-add_library(${PROJLIB_TARGET} foo.cpp)
+add_library(${PROJLIB_TARGET} foo.cpp ../include/foo.hpp)
 
+# Proj library
 target_include_directories(
   ${PROJLIB_TARGET} PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}
@@ -8,7 +8,6 @@ target_include_directories(
 )
 
 if (MSVC)
-  set(CMAKE_SUPPRESS_REGENERATION true) # Suppress zero check project
   target_compile_options(${PROJLIB_TARGET} PRIVATE /MP /W4)
 else()
   target_compile_options(${PROJLIB_TARGET} PRIVATE -Wall -Wextra -Wpedantic)
@@ -33,7 +32,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CODE_COVERAGE)
 endif()
 
 # Executable
-add_executable(${PROJ_TARGET} main.cpp)
+add_executable(${PROJ_TARGET} main.cpp ../include/foo.hpp)
 
 target_include_directories(
   ${PROJ_TARGET} PRIVATE
@@ -42,7 +41,6 @@ target_include_directories(
 )
 
 if (MSVC)
-  set(CMAKE_SUPPRESS_REGENERATION true) # Suppress zero check project
   target_compile_options(${PROJ_TARGET} PRIVATE /MP /W4)
 else()
   target_compile_options(${PROJ_TARGET} PRIVATE -Wall -Wextra -Wpedantic)
