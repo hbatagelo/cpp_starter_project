@@ -12,7 +12,7 @@ cmake --build . --config Debug -- -j $(nproc)
 
 # Test
 echo -e "\e[93m-- Running tests\e[39m"
-ctest -j $(nproc) --output-on-failure
+ctest -j $(nproc) --output-on-failure -VV
 
 # Coverage
 COV=$(cmake -LA -N . | grep CODE_COVERAGE:BOOL=ON) 
