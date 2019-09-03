@@ -42,9 +42,9 @@ Run `gen_vs_ln.bat` to generate a [Visual Studio](https://visualstudio.microsoft
 
 If you use [Clang Power Tools](https://clangpowertools.com/download.html) in VS 2019, you may experience crashes when running clang-format or clang-tidy after opening the project via the `Clone or check out code` or `Open a local folder` options in VS with CMake tools for Windows (tested with MSVC and clang-cl). These crashes can be prevented by opening the solution file instead. Once the solution is open, you can switch to the folder view.
 
-## Clang-tidy
+### Clang-tidy
 
-I have been passing the following extra arguments ('--extr-arg') to the compiler when using clang-tidy:
+I have been passing the following extra arguments (`--extra-arg`) to the compiler when using clang-tidy:
 
 ```sh
 -Weverything
@@ -55,7 +55,7 @@ I have been passing the following extra arguments ('--extr-arg') to the compiler
 -I./include
 ```
 
-The `-I./include` is for adding the local header files outside `src` to the include search path.
+`-I./include` adds the local header files outside `src` to the include search path. If not done, clang-tidy may complain about missing headers in VS Code.
 
 ## License
 
