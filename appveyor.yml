@@ -13,7 +13,7 @@ image:
 clone_folder: c:\projects\source
 
 install:
-#- set ORIGIN_PATH=%cd%
+- set ORIGIN_PATH=%cd%
 - set PATH=%PATH%;c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\
 - git clone https://github.com/google/googletest.git
 - cd googletest
@@ -22,7 +22,8 @@ install:
 - devenv googletest\gtest.sln /Build
 - xcopy ".\lib" ".\googletest\lib" /hievry
 - set GTEST_ROOT=%cd%\googletest
-#- cd %ORIGIN_PATH%
+- set GTEST_INCLUDE_DIRS=%cd%\googletest\include
+- cd %ORIGIN_PATH%
 
 # Custom build script
 build_script:
