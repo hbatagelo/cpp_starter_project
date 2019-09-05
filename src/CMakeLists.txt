@@ -1,4 +1,9 @@
-add_library(${PROJLIB_TARGET} foo.cpp ../include/foo.hpp)
+add_library(${PROJLIB_TARGET}
+  coin-flipper.cpp
+  foo.cpp
+  ../include/coin-flipper.hpp  
+  ../include/foo.hpp
+)
 
 # Proj library
 target_include_directories(
@@ -32,7 +37,11 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CODE_COVERAGE)
 endif()
 
 # Executable
-add_executable(${PROJ_TARGET} main.cpp ../include/foo.hpp)
+add_executable(${PROJ_TARGET}
+  main.cpp
+  ../include/coin-flipper.hpp
+  ../include/foo.hpp
+)
 
 target_include_directories(
   ${PROJ_TARGET} PRIVATE

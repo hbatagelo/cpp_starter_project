@@ -4,7 +4,7 @@ fetch_gtest(
   ${PROJECT_BINARY_DIR}/gtest
 )
 
-add_executable(${TEST_TARGET} tester.cpp)
+add_executable(${TEST_TARGET} tester.cpp mockrng.cpp)
 
 # Include the gtest library. gtest_SOURCE_DIR is available due to
 # 'project(gtest)' above.
@@ -19,7 +19,7 @@ target_include_directories(
 target_compile_features(${TEST_TARGET} PRIVATE cxx_std_17)
 
 # Standard linking to gtest stuff
-target_link_libraries(${TEST_TARGET} PRIVATE gtest gtest_main)
+target_link_libraries(${TEST_TARGET} PRIVATE gtest gtest_main gmock gmock_main)
 
 # Extra linking for the project
 target_link_libraries(${TEST_TARGET} PRIVATE ${PROJLIB_TARGET})

@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-set(PROJECT_NAME cpp_starter_project)
-project(${PROJECT_NAME} LANGUAGES CXX)
+project(cpp_starter_project LANGUAGES CXX)
 
 set(PROJ_TARGET intro)
 set(PROJLIB_TARGET introlib)

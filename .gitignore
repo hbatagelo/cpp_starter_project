@@ -4,7 +4,11 @@
 
 # Build directories
 build
+vs2017
 vs2019
+
+# Dependencies already resolved by CMake
+googletest
 
 # CMake build configuration used by Visual Studio
 CMakeSettings.json

@@ -1,6 +1,25 @@
 #include <iostream>
+#include <memory>
+#include <random>
 
+#include "coin-flipper.hpp"
 #include "foo.hpp"
+
+class MyRng : public Rng {
+public:
+  MyRng() {
+    std::random_device rdev;
+    rng = std::make_unique<std::mt19937>(rdev());
+  }
+
+  double generate(double min, double max) override {
+    std::uniform_real_distribution<> rdist(min, max);
+    return rdist(*rng);
+  }
+
+private:
+  std::unique_ptr<std::mt19937> rng;
+};
 
 int main() {
   std::cout << "do stuff" << std::endl;
@@ -12,4 +31,13 @@ int main() {
 
   Foo p;
   std::cout << p.bar(x) << std::endl;
+
+  MyRng generator;
+
+  // Create a game
+  CoinFlipper game(&generator);
+  // Start playing
+  CoinFlipper::Result flip = game.flipCoin();
+
+  std::cout << "Result: " << flip << std::endl;
 }
