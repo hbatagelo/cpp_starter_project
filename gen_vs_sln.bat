@@ -1,33 +1,31 @@
 :: Generates a solution file for Visual Studio
-:: SYNOPSIS:
+:: USAGE:
 ::   .\gen_vs_sln.bat [VERSION]
-:: OPTIONS:
-::   2017    generates a VS 2017 solution file in .\vs2017
-::   2019    generates a VS 2019 solution file in .\vs2019 (default)
+:: VERSION:
+::   15    generates a v15 solution file in .\vs15
+::   16    generates a v16 solution file in .\vs16 (default)
 @echo off
 
 set ver=16
-set year=2019
 
 if [%1]==[] (
    goto :build
 )
-if [%1]==[2019] (
+if [%1]==[16] (
    goto :build
 )
-if [%1]==[2017] (
+if [%1]==[15] (
    set ver=15
-   set year=2017
    goto :build
 )
 
 echo Invalid argument.
-echo Use either 2017 or 2019 (default).
+echo Use either 15 or 16 (default).
 exit /b
 
 :build
-echo Generating solution file for Visual Studio %year%...
-mkdir vs%year%
-cd vs%year%
-cmake -G "Visual Studio %ver% %year%" -A x64 ..
+echo Generating solution file for Visual Studio version %ver%...
+mkdir vs%ver%
+cd vs%ver%
+cmake -G "Visual Studio %ver%" -A x64 ..
 echo Done!

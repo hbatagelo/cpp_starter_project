@@ -4,8 +4,8 @@
 // See https://en.cppreference.com/w/cpp/language/rule_of_three
 class Rng {
 public:
-  Rng() = default; // Constructor
-  virtual ~Rng() = default;
+  Rng() = default;                      // Constructor
+  virtual ~Rng() = default;             // Destructor
   Rng(const Rng &) = delete;            // Copy constructor
   Rng &operator=(const Rng &) = delete; // Copy assignment
   Rng(Rng &&) = delete;                 // Move constructor

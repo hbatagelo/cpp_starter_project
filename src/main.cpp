@@ -7,10 +7,7 @@
 
 class MyRng : public Rng {
 public:
-  MyRng() {
-    std::random_device rdev;
-    rng = std::make_unique<std::mt19937>(rdev());
-  }
+  MyRng() : rng(std::make_unique<std::mt19937>(dev())) {}
 
   double generate(double min, double max) override {
     std::uniform_real_distribution<> rdist(min, max);
@@ -18,6 +15,7 @@ public:
   }
 
 private:
+  std::random_device dev;
   std::unique_ptr<std::mt19937> rng;
 };
 
@@ -36,6 +34,7 @@ int main() {
 
   // Create a game
   CoinFlipper game(&generator);
+
   // Start playing
   CoinFlipper::Result flip = game.flipCoin();
 
