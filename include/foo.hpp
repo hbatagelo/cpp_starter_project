@@ -5,10 +5,6 @@
 
 class Foo {
 public:
-  // why only detected if implemented here?
-  // void foo(int &i) {
-  // 	i = 1;
-  // }
   int bar(const int &i);
 };
 

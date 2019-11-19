@@ -2,6 +2,10 @@
 
 #include "coin-flipper.hpp"
 
+double Rng::generate([[maybe_unused]] double min, [[maybe_unused]] double max) {
+  return 0.0;
+}
+
 CoinFlipper::CoinFlipper(Rng *rng) : d_rng(rng) {}
 
 CoinFlipper::Result CoinFlipper::flipCoin() const {

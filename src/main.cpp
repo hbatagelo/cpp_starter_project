@@ -9,15 +9,17 @@ class MyRng : public Rng {
 public:
   MyRng() : rng(std::make_unique<std::mt19937>(dev())) {}
 
-  double generate(double min, double max) override {
-    std::uniform_real_distribution<> rdist(min, max);
-    return rdist(*rng);
-  }
+  double generate(double min, double max) override;
 
 private:
   std::random_device dev;
   std::unique_ptr<std::mt19937> rng;
 };
+
+double MyRng::generate(double min, double max) {
+  std::uniform_real_distribution<> rdist(min, max);
+  return rdist(*rng);
+}
 
 int main() {
   std::cout << "do stuff" << std::endl;
