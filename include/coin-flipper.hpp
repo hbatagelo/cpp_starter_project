@@ -22,8 +22,6 @@ public:
   enum Result { HEADS = 0, TAILS = 1 };
 
   explicit CoinFlipper(Rng *rng);
-  virtual ~CoinFlipper() = default;
-
   Result flipCoin() const;
 };
 
