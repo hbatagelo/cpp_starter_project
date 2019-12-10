@@ -15,6 +15,7 @@ using ::testing::Values;
 
 class MockRng : public Rng {
 public:
+  virtual ~MockRng() = default;
   MOCK_METHOD(double, generate, (double, double), (override));
 };
 
