@@ -12,11 +12,11 @@ public:
   double generate(double min, double max) override;
 
 private:
-  std::random_device dev;
-  std::unique_ptr<std::mt19937> rng;
+  std::random_device dev{};
+  std::unique_ptr<std::mt19937> rng{};
 };
 
-double MyRng::generate(double min, double max) {
+double MyRng::generate(const double min, const double max) {
   std::uniform_real_distribution<> rdist(min, max);
   return rdist(*rng);
 }
@@ -24,7 +24,7 @@ double MyRng::generate(double min, double max) {
 int main() {
   std::cout << "do stuff" << std::endl;
 
-  int x = 4;
+  const auto x = 4;
   std::cout << x << std::endl;
 
   std::cout << independentMethod(x) << std::endl;
@@ -35,10 +35,10 @@ int main() {
   MyRng generator;
 
   // Create a game
-  CoinFlipper game(&generator);
+  const CoinFlipper game(&generator);
 
   // Start playing
-  CoinFlipper::Result flip = game.flipCoin();
+  const auto flip = game.flipCoin();
 
   std::cout << "Result: " << flip << std::endl;
 }
