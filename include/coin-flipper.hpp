@@ -11,7 +11,7 @@ public:
   Rng &operator=(Rng &&) = default;      // Move assignment
   virtual ~Rng() = default;              // Destructor
 
-  virtual double generate(double min, double max) = 0;
+  virtual double generate(double min, double max);
 };
 
 class CoinFlipper {
