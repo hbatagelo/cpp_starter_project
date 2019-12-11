@@ -38,10 +38,11 @@ after_success:
     # Create coverage reporting (gcc only)
     if [ "$TRAVIS_COMPILER" == "gcc" ]; then
       cd ${TRAVIS_BUILD_DIR}
+      ls -la
+      intro > /dev/null
       lcov --version
       lcov --capture --directory . --output-file coverage.info
-      #lcov --remove coverage.info $PWD'/gtest/*' '/usr/*' "${HOME}" --output-file coverage.info
-      lcov --remove coverage.info $PWD'/gtest/*' '/usr/*' --output-file coverage.info
+      lcov --remove coverage.info $PWD'/gtest/*' '/usr/*' "${HOME}" --output-file coverage.info
       lcov --list coverage.info
       # Uploading report to Codecov
       bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
