@@ -37,8 +37,7 @@ TEST(CoinFlipper, ShouldReturnHeadsIfRandValueIsLessThanProbability) {
   // 5) Check output (using Google Test or some other framework)
   EXPECT_EQ(CoinFlipper::HEADS, result);
 
-  testing::Mock::AllowLeak(&rng);
-  testing::Mock::AllowLeak(&coinFlipper);
+  // testing::Mock::AllowLeak(&rng);
 
   // 6) Let gmock automatically check mock expectations were met at end of test
 }
