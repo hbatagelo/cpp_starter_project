@@ -5,7 +5,7 @@
 #include "coin-flipper.hpp"
 #include "foo.hpp"
 
-class MyRng : public Rng {
+class MyRng final : public Rng {
 public:
   MyRng() : rng(std::make_unique<std::mt19937>(dev())) {}
 
@@ -16,29 +16,28 @@ private:
   std::unique_ptr<std::mt19937> rng;
 };
 
-double MyRng::generate(double min, double max) {
-  std::uniform_real_distribution<> rdist(min, max);
+double MyRng::generate(const double min, const double max) {
+  const std::uniform_real_distribution<> rdist(min, max);
   return rdist(*rng);
 }
 
 int main() {
   std::cout << "do stuff" << std::endl;
 
-  int x = 4;
+  const auto x = 4;
   std::cout << x << std::endl;
 
   std::cout << independentMethod(x) << std::endl;
 
-  Foo p;
-  std::cout << p.bar(x) << std::endl;
+  std::cout << Foo::bar(x) << std::endl;
 
   MyRng generator;
 
   // Create a game
-  CoinFlipper game(&generator);
+  const CoinFlipper game(&generator);
 
   // Start playing
-  CoinFlipper::Result flip = game.flipCoin();
+  const auto flip = game.flipCoin();
 
   std::cout << "Result: " << flip << std::endl;
 }

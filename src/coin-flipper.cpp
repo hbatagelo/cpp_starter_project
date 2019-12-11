@@ -1,5 +1,3 @@
-#include <cassert>
-
 #include "coin-flipper.hpp"
 
 // double Rng::generate([[maybe_unused]] double min, [[maybe_unused]] double

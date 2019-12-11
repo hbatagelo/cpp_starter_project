@@ -22,7 +22,7 @@ public:
   enum Result { HEADS = 0, TAILS = 1 };
 
   explicit CoinFlipper(Rng *rng);
-  Result flipCoin() const;
+  [[nodiscard]] CoinFlipper::Result flipCoin() const;
 };
 
 #endif
