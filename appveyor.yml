@@ -18,12 +18,12 @@ build_script:
 - mkdir build
 - cd build
 - cmake c:\projects\source -G "Visual Studio 16 2019"
-- cmake --build . --config "Release"
+- cmake --build . --config "Debug"
 
 # Custom test script
 test_script:
-- ctest -C Release -VV
+- ctest -C Debug -VV
 
 artifacts:
-- path: 'build\src\Release\intro.exe'
+- path: 'build\src\Debug\intro.exe'
   name: cpp_starter_project
