@@ -5,6 +5,7 @@
 
 class Foo {
 public:
+  virtual ~Foo() = default;
   int bar(const int &i);
 };
 

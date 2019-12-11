@@ -3,11 +3,11 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/700a7eed3d8340acbbeb7a495c123a33)](https://app.codacy.com/app/hbatagelo/cpp_starter_project?utm_source=github.com&utm_medium=referral&utm_content=hbatagelo/cpp_starter_project&utm_campaign=Badge_Grade_Dashboard) [![Build Status](https://travis-ci.org/hbatagelo/cpp_starter_project.svg?branch=master)](https://travis-ci.org/hbatagelo/cpp_starter_project) [![Build status](https://ci.appveyor.com/api/projects/status/66fs8jswu3760qak?svg=true)](https://ci.appveyor.com/project/hbatagelo/cpp-starter-project) [![codecov](https://codecov.io/gh/hbatagelo/cpp_starter_project/branch/master/graph/badge.svg)](https://codecov.io/gh/hbatagelo/cpp_starter_project)
 
 ---------
-A barebones cross-platform C++ project with continuous integration. Based on the [homonymous project](https://github.com/lefticus/cpp_starter_project) by Jason Turner.
+A barebones cross-platform C++ project with continuous integration. Based on the [homonymous project](https://github.com/lefticus/cpp_starter_project) by Jason Turner. The example code for Googletest is based on the code from the [Introduction to Google Mock](http://donsoft.io/gmock-presentation/) talk by Donald Whyte.
 
 ## Build Requirements
 
-*   [CMake](https://cmake.org)
+*   [CMake](https://cmake.org) 3.10 or greater
 *   C++17-standard-compliant compiler
 
 ## Installation
@@ -44,7 +44,7 @@ If you use [Clang Power Tools](https://clangpowertools.com/download.html) in VS 
 
 ### Clang-tidy
 
-I have been passing the following extra arguments (`--extra-arg`) to the compiler when using clang-tidy:
+I recommend using the following extra arguments (`--extra-arg`) to the compiler when using clang-tidy:
 
 ```sh
 -Weverything
@@ -55,10 +55,8 @@ I have been passing the following extra arguments (`--extra-arg`) to the compile
 -I./include
 ```
 
-`-I./include` adds the local header files outside `src` to the include search path. Otherwise, clang-tidy complains about missing headers in VS Code.
+`-I./include` adds the local header files outside `src` to the include search path. If the headers are not added to the search path, clang-tidy will complain about missing headers in VS Code.
 
 ## License
 
 Unlicense
-
-Enjoy!
