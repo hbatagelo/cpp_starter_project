@@ -19,37 +19,6 @@ public:
   MOCK_METHOD(double, generate, (double, double), (override));
 };
 
-// The fixture for testing class MockRng. From google test primer.
-class RngFixture : public ::testing::Test {
-protected:
-  RngFixture() = default;
-  virtual ~RngFixture() = default;
-  virtual void SetUp() {}
-  virtual void TearDown() {}
-
-  // Objects declared here can be used by all tests in the test case for Foo.
-  MockRng rng;
-};
-
-TEST_F(RngFixture, ShouldReturnHeadsIfRandValueIsLessThanProbability) {
-  // 1) Specify your expectations of them
-  EXPECT_CALL(rng, generate(DoubleEq(0.0), DoubleEq(1.0)))
-      .Times(Exactly(1))
-      .WillOnce(Return(0.25));
-
-  // 2) Construct object(s) under test, passing mocks
-  CoinFlipper coinFlipper(&rng);
-
-  // 3) Run code under test
-  CoinFlipper::Result result = coinFlipper.flipCoin();
-
-  // 4) Check output (using Google Test or some other framework)
-  EXPECT_EQ(CoinFlipper::HEADS, result);
-
-  // 5) Let gmock automatically check mock expectations were met at end of test
-}
-
-/*
 TEST(CoinFlipper, ShouldReturnHeadsIfRandValueIsLessThanProbability) {
   // 1) Create mock objects (collaborators)
   MockRng rng;
@@ -70,7 +39,7 @@ TEST(CoinFlipper, ShouldReturnHeadsIfRandValueIsLessThanProbability) {
 
   // 6) Let gmock automatically check mock expectations were met at end of test
 }
-*/
+
 /*
 
 TEST_P(CoinFlipper, CoinFlip) {
