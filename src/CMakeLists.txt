@@ -60,7 +60,7 @@ target_compile_features(${PROJ_TARGET} PRIVATE cxx_std_17)
 
 target_link_libraries(${PROJ_TARGET} PRIVATE ${PROJLIB_TARGET})
 
-# Code coverage configuration for PROJLIB_TARGET
+# Code coverage configuration for PROJ_TARGET
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CODE_COVERAGE)
   target_compile_options(
     ${PROJ_TARGET} PRIVATE 
@@ -74,7 +74,6 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CODE_COVERAGE)
     target_link_libraries(${PROJ_TARGET} INTERFACE --coverage)
   endif()
 endif()
-
 
 # Post build
 #if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CODE_COVERAGE)
