@@ -18,7 +18,7 @@ public:
   virtual ~MockRng() = default;
   MOCK_METHOD(double, generate, (double, double), (override));
 };
-
+/*
 TEST(CoinFlipper, ShouldReturnHeadsIfRandValueIsLessThanProbability) {
   // 1) Create mock objects (collaborators)
   MockRng rng;
@@ -41,7 +41,7 @@ TEST(CoinFlipper, ShouldReturnHeadsIfRandValueIsLessThanProbability) {
 
   // 6) Let gmock automatically check mock expectations were met at end of test
 }
-
+*/
 /*
 
 TEST_P(CoinFlipper, CoinFlip) {
