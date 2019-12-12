@@ -17,7 +17,7 @@ private:
 };
 
 double MyRng::generate(const double min, const double max) {
-  const std::uniform_real_distribution<> rdist(min, max);
+  std::uniform_real_distribution<> rdist(min, max);
   return rdist(*rng);
 }
 
