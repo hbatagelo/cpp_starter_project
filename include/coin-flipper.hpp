@@ -19,7 +19,7 @@ private:
   Rng *d_rng; // held, not owned
 
 public:
-  enum Result { HEADS = 0, TAILS = 1 };
+  enum class Result { Heads = 0, Tails = 1 };
 
   explicit CoinFlipper(Rng *rng);
   [[nodiscard]] CoinFlipper::Result flipCoin() const;

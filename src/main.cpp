@@ -39,5 +39,8 @@ int main() {
   // Start playing
   const auto flip = game.flipCoin();
 
-  std::cout << "Result: " << flip << std::endl;
+  const std::string result =
+      flip == CoinFlipper::Result::Heads ? "Heads" : "Tails";
+
+  std::cout << "Result: " << result << std::endl;
 }

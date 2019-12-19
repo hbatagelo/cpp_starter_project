@@ -35,7 +35,7 @@ TEST(CoinFlipper, ShouldReturnHeadsIfRandValueIsLessThanProbability) {
   CoinFlipper::Result result = coinFlipper.flipCoin();
 
   // 5) Check output (using Google Test or some other framework)
-  EXPECT_EQ(CoinFlipper::HEADS, result);
+  EXPECT_EQ(CoinFlipper::Heads, result);
 
   // testing::Mock::AllowLeak(&rng);
 
@@ -60,11 +60,11 @@ TEST_P(CoinFlipper, CoinFlip) {
 }
 
 INSTANTIATE_TEST_CASE_P(ValidRandomNumberGenerated, CoinFlipper,
-                        Values(std::make_pair(0.0, CoinFlipper::HEADS),
-                               std::make_pair(0.25, CoinFlipper::HEADS),
-                               std::make_pair(0.49999, CoinFlipper::HEADS),
-                               std::make_pair(0.5, CoinFlipper::TAILS),
-                               std::make_pair(0.75, CoinFlipper::TAILS),
-                               std::make_pair(1.0, CoinFlipper::TAILS)));
+                        Values(std::make_pair(0.0, CoinFlipper::Heads),
+                               std::make_pair(0.25, CoinFlipper::Heads),
+                               std::make_pair(0.49999, CoinFlipper::Heads),
+                               std::make_pair(0.5, CoinFlipper::Tails),
+                               std::make_pair(0.75, CoinFlipper::Tails),
+                               std::make_pair(1.0, CoinFlipper::Tails)));
 
 */
