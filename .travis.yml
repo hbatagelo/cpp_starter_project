@@ -48,6 +48,7 @@ matrix:
             - lcov
       env:
         - CXX=g++-5
+        - CXXSTD=c++17
 
 script: 
   - ./build.sh  
