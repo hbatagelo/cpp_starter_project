@@ -22,19 +22,22 @@ double MyRng::generate(const double min, const double max) {
 }
 
 int main() {
-  std::cout << "do stuff" << std::endl;
+  std::cout << "do stuff\n";
 
   const auto x = 4;
-  std::cout << x << std::endl;
+  std::cout << x << "\n";
 
-  std::cout << independentMethod(x) << std::endl;
+  std::cout << independentMethod(x) << "\n";
 
-  std::cout << Foo::bar(x) << std::endl;
+  std::cout << Foo::bar(x) << "\n";
 
-  MyRng generator;
+  Rng baseGenerator;
+  std::cout << baseGenerator.generate(0.0, 1.0);
+
+  MyRng myGenerator;
 
   // Create a game
-  const CoinFlipper game(&generator);
+  const CoinFlipper game(&myGenerator);
 
   // Start playing
   const auto flip = game.flipCoin();
@@ -43,5 +46,5 @@ int main() {
                           ? std::string("Heads")
                           : std::string("Tails");
 
-  std::cout << "Result: " << result << std::endl;
+  std::cout << "Result: " << result << "\n";
 }
