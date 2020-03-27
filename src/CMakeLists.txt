@@ -20,6 +20,7 @@ endif()
 
 # Use C++17
 target_compile_features(${PROJLIB_TARGET} PRIVATE cxx_std_17)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z")
 
 # Code coverage configuration for PROJLIB_TARGET
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CODE_COVERAGE)
