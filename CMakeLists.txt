@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(cpp_starter_project LANGUAGES CXX)
+include(cmake/StandardProjectSettings.cmake)
 
 set(PROJ_TARGET intro)
 set(PROJLIB_TARGET introlib)
@@ -18,4 +19,6 @@ option(CODE_COVERAGE "Enable coverage reporting for gcc" OFF)
 if (BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
   enable_testing()
   add_subdirectory(tests)
+  # Disable IPO
+  set_property(TARGET ${TEST_TARGET} PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
 endif()
