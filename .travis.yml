@@ -44,10 +44,10 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-5
+            - g++-7
             - lcov
       env:
-        - CXX=g++-5
+        - CXX=g++-7
 
 script: 
   - ./build.sh  
