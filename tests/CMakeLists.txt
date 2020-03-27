@@ -23,20 +23,7 @@ target_link_libraries(${TEST_TARGET} PRIVATE gtest gtest_main gmock gmock_main)
 
 # Extra linking for the project
 target_link_libraries(${TEST_TARGET} PRIVATE ${PROJLIB_TARGET})
-
-# Code coverage configuration
-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND CODE_COVERAGE)
-  target_compile_options(
-    ${TEST_TARGET} PRIVATE 
-    --coverage # Coverage flags
-    -O0        # No optimization
-    -g         # Generate debug info
-  )
-  if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
-    target_link_options(${TEST_TARGET} PRIVATE --coverage)
-  else()
-    target_link_libraries(${TEST_TARGET} PRIVATE --coverage)
-  endif()
-endif()
+target_link_libraries(${TEST_TARGET} PRIVATE ${OPTIONS_TARGET})
+target_link_libraries(${TEST_TARGET} PRIVATE ${WARNINGS_TARGET})
 
 add_test(NAME Tester COMMAND ${TEST_TARGET})
