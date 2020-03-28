@@ -58,8 +58,8 @@ matrix:
 
 before_script:
   - eval "${MATRIX_EVAL}"
-  - python --version
-  - pip install conan
+  - python3 --version
+  - pip3 install conan
 
 script: 
   - ./build.sh
