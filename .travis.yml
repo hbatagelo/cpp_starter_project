@@ -58,9 +58,11 @@ matrix:
 
 before_script:
   - eval "${MATRIX_EVAL}"
+  - python --version
+  - pip install conan
 
 script: 
-  - ./build.sh  
+  - ./build.sh
 
 after_success:
   - |
