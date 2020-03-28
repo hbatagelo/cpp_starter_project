@@ -17,8 +17,8 @@ before_install:
   - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 
 install:
-  - pip3 install conan --upgrade
-  - pip3 install conan_package_tools
+  - pip install conan --upgrade
+  - pip install conan_package_tools
 
 addons:
   coverity_scan:
@@ -41,6 +41,7 @@ matrix:
               key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
           packages:
             - clang-9
+            - python3
       env:
         - MATRIX_EVAL="CC=clang-9 && CXX=clang++-9"
 
@@ -52,6 +53,7 @@ matrix:
           packages:
             - g++-7
             - lcov
+            - python3
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
