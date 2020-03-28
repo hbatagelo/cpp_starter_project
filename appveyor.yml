@@ -19,8 +19,8 @@ clone_folder: c:\projects\source
 
 install:
   - set PATH=%PATH%;%PYTHON%/Scripts/
-  - python -m pip install --upgrade pip
-  - pip install tox==3.7.0 tox-venv==0.3.1
+  - python -m pip3 install --upgrade pip3
+  - pip3 install tox==3.7.0 tox-venv==0.3.1
 
 # Custom build script
 build_script:
