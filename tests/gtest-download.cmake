@@ -5,7 +5,8 @@ project(gtest-download NONE)
 
 include(ExternalProject)
 
-ExternalProject_Add(gtest
+ExternalProject_Add(
+  gtest
   SOURCE_DIR "@GTEST_DOWNLOAD_ROOT@/gtest-src"
   BINARY_DIR "@GTEST_DOWNLOAD_ROOT@/gtest-build"
   GIT_REPOSITORY https://github.com/google/googletest.git
@@ -13,5 +14,4 @@ ExternalProject_Add(gtest
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""
-  TEST_COMMAND ""
-)
+  TEST_COMMAND "")

@@ -2,10 +2,12 @@
 #
 # https://github.com/lefticus/cppbestpractices/blob/master/02-Use_the_Tools_Avai lable.md
 
-function(set_project_warnings project_name)
+# Set standard project warnings for target project_target
+function(set_project_warnings project_target)
   option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" TRUE)
 
-  set(MSVC_WARNINGS
+  # Set warning flags for MSVC
+  set(_MSVC_WARNINGS
       /W4 # Baseline reasonable warnings
       /w14242 # 'identfier': conversion from 'type1' to 'type1', possible loss of data
       /w14254 # 'operator': conversion from 'type1:field_bits' to 'type2:field_bits', possible loss of data
@@ -30,7 +32,8 @@ function(set_project_warnings project_name)
       /w14928 # illegal copy-initialization; more than one user-defined conversion has been implicitly applied
   )
 
-  set(CLANG_WARNINGS
+  # Set warning flags for Clang
+  set(_CLANG_WARNINGS
       -Wall
       -Wextra # reasonable and standard
       -Wshadow # warn the user if a variable declaration shadows one from a parent context
@@ -48,13 +51,15 @@ function(set_project_warnings project_name)
       -Wformat=2 # warn on security issues around functions that format output (ie printf)
   )
 
+  # Whether warnings are treated as errors
   if(WARNINGS_AS_ERRORS)
-    set(CLANG_WARNINGS ${CLANG_WARNINGS} -Werror)
-    set(MSVC_WARNINGS ${MSVC_WARNINGS} /WX)
+    set(_CLANG_WARNINGS ${_CLANG_WARNINGS} -Werror)
+    set(_MSVC_WARNINGS ${_MSVC_WARNINGS} /WX)
   endif()
 
-  set(GCC_WARNINGS
-      ${CLANG_WARNINGS}
+  # Set warning flags for GCC
+  set(_GCC_WARNINGS
+      ${_CLANG_WARNINGS}
       -Wmisleading-indentation # warn if identation implies blocks where blocks do not exist
       -Wduplicated-cond # warn if if / else chain has duplicated conditions
       -Wduplicated-branches # warn if if / else branches have duplicated code
@@ -62,14 +67,14 @@ function(set_project_warnings project_name)
       -Wuseless-cast # warn if you perform a cast to the same type
   )
 
+  # Set warnings
   if(MSVC)
-    set(PROJECT_WARNINGS ${MSVC_WARNINGS})
+    set(_PROJECT_WARNINGS ${_MSVC_WARNINGS})
   elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    set(PROJECT_WARNINGS ${CLANG_WARNINGS})
+    set(_PROJECT_WARNINGS ${_CLANG_WARNINGS})
   else()
-    set(PROJECT_WARNINGS ${GCC_WARNINGS})
+    set(_PROJECT_WARNINGS ${_GCC_WARNINGS})
   endif()
-
-  target_compile_options(${project_name} INTERFACE ${PROJECT_WARNINGS})
+  target_compile_options(${project_target} INTERFACE ${_PROJECT_WARNINGS})
 
 endfunction()

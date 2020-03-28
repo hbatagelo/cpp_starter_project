@@ -1,3 +1,4 @@
+# Default additional_commands
 additional_commands:
   foo:
     flags:
@@ -7,12 +8,28 @@ additional_commands:
       DEPENDS: '*'
       HEADERS: '*'
       SOURCES: '*'
+
+# What character to use for bulleted lists
 bullet_char: '*'
-dangle_parens: false
+
+# What character to use as punctuation after numerals in an enumerated list
 enum_char: .
+
+# If a statement is wrapped to more than one line, than dangle the closing
+# parenthesis on its own line.
+dangle_parens: false
+
+# What style line endings to use in the output.
 line_ending: unix
+
+# How wide to allow formatted cmake files
 line_width: 120
-max_subargs_per_line: 3
+
+# If true, separate flow control names from their parentheses with a space
 separate_ctrl_name_with_space: false
+
+# If true, separate function names from parentheses with a space
 separate_fn_name_with_space: false
+
+# How many spaces to tab for indent
 tab_size: 2

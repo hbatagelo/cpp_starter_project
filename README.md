@@ -44,7 +44,7 @@ If you use [Clang Power Tools](https://clangpowertools.com/download.html) in VS 
 
 ### Clang-tidy
 
-I recommend using the following extra arguments (`--extra-arg`) to the compiler when using clang-tidy:
+The warning flags for clang, which are listed at ``cmake/CompilerWarnings.cmake``, can be used as extra arguments (`--extra-arg`) of clang-tidy. Alternatively, the following flags can be used:
 
 ```sh
 -Weverything
@@ -52,10 +52,9 @@ I recommend using the following extra arguments (`--extra-arg`) to the compiler 
 -Wno-c++98-compat
 -Wno-c++98-compat-pedantic
 -Wno-c++17-extensions
--I./include
 ```
 
-`-I./include` adds the local header files outside `src` to the include search path. If the headers are not added to the search path, clang-tidy will complain about missing headers in VS Code.
+In addition, `-I./include` should be included to add the local header files outside `src` to the include search path. If the headers are not added to the search path, clang-tidy will complain about missing headers in VS Code.
 
 ## License
 

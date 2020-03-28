@@ -1,7 +1,7 @@
 ---
 # Configure clang-tidy for this project.
 
-Checks: '*,-abseil*,-android*,-fuchsia*,-bugprone-exception-escape'
+Checks: '*,-abseil*,-google*,-zircon*,-android*,-fuchsia*,-modernize-use-trailing-return-type,-llvm*'
 
 WarningsAsErrors: '*'
 
