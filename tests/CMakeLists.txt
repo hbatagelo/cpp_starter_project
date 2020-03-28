@@ -24,6 +24,5 @@ target_link_libraries(${TEST_TARGET} PRIVATE gtest gtest_main gmock gmock_main)
 # Extra linking for the project
 target_link_libraries(${TEST_TARGET} PRIVATE ${PROJLIB_TARGET})
 target_link_libraries(${TEST_TARGET} PRIVATE ${OPTIONS_TARGET})
-target_link_libraries(${TEST_TARGET} PRIVATE ${WARNINGS_TARGET})
 
 add_test(NAME Tester COMMAND ${TEST_TARGET})
