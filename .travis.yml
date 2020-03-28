@@ -17,8 +17,9 @@ before_install:
   - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 
 install:
-  - pip3 install conan --upgrade
-  - pip3 install conan_package_tools
+  - python --version
+  - pip install conan --upgrade
+  - pip install conan_package_tools
 
 addons:
   coverity_scan:
@@ -33,6 +34,7 @@ addons:
 matrix:
   include:
     - compiler: clang
+      python: '3.6'
       addons:
         apt:
           sources:
@@ -46,6 +48,7 @@ matrix:
         - MATRIX_EVAL="CC=clang-9 && CXX=clang++-9"
 
     - compiler: gcc
+      python: '3.6'
       addons:
         apt:
           sources:
