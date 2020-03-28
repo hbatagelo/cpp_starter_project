@@ -8,7 +8,6 @@ environment:
   PYTHON: "C:\\Python37"
 
   matrix:
-  - ARCH: x64 
   # Conan development
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
     PYVER: py38
@@ -32,7 +31,6 @@ build_script:
 
 # Custom test script
 test_script:
-  - tox
   - ctest -C Release -VV
 
 artifacts:
