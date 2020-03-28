@@ -12,17 +12,17 @@ environment:
   matrix:
   # Conan development
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-  - PYVER: py38
-  - TOXENV: py38-conandev
-  - CMAKE_GENERATOR: "Visual Studio 16 2019"  
+    PYVER: py38
+    TOXENV: py38-conandev
+    CMAKE_GENERATOR: "Visual Studio 16 2019"  
 
 # Clone directory
 clone_folder: c:\projects\source
 
 install:
   - set PATH=%PATH%;%PYTHON%/Scripts/
-  - python -m pip install --upgrade pip
-  - pip install tox==3.7.0 tox-venv==0.3.1
+  - python3 -m pip install --upgrade pip
+  - pip3 install tox==3.7.0 tox-venv==0.3.1
 
 # Custom build script
 build_script:
