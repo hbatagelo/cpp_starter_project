@@ -1,6 +1,8 @@
 language: cpp
 os: linux
 dist: xenial
+language: python
+python: "3.6"
 
 branches:
   only:
@@ -14,6 +16,10 @@ env:
 
 before_install:
   - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+install:
+  - pip install conan --upgrade
+  - pip install conan_package_tools
 
 addons:
   coverity_scan:

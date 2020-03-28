@@ -59,7 +59,9 @@ if(CPP_STARTER_USE_SDL)
   # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl2:wayland=True)
 endif()
 
-# Conan include(cmake/Conan.cmake) run_conan()
+# Conan
+include(cmake/Conan.cmake)
+# run_conan()
 
 # Tests
 option(BUILD_TESTING "Build the testing tree" ON)
