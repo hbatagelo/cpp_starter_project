@@ -2,15 +2,13 @@ version: 1.0.{build}
 
 # Build worker image (VM template)
 image:
-- Visual Studio 2019
+  - Visual Studio 2019
 
-environment:
-  matrix:
+platform:
+  - x64
 
 # Clone directory
 clone_folder: c:\projects\source
-
-install:
 
 # Custom build script
 build_script:
