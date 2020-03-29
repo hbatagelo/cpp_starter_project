@@ -18,7 +18,7 @@ ctest -j $(nproc) --output-on-failure -VV
 
 # Coverage
 COV=$(cmake -LA -N . | grep ENABLE_COVERAGE:BOOL=ON) 
-if [ ! -z "$COV" ]; then # Does CMake's cache has CODE_COVERAGE:BOOL=ON?
+if [ ! -z "$COV" ]; then # Does CMake's cache has ENABLE_COVERAGE:BOOL=ON?
     # Generate coverage report
     if command -v lcov >/dev/null 2>&1; then # Does lcov exist?
         printf '\n'

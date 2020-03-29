@@ -30,6 +30,7 @@ function(set_project_warnings project_target)
       /w14905 # wide string literal cast to 'LPSTR'
       /w14906 # string literal cast to 'LPWSTR'
       /w14928 # illegal copy-initialization; more than one user-defined conversion has been implicitly applied
+      /permissive- # standards conformance mode for MSVC compiler
   )
 
   # Set warning flags for Clang
@@ -70,7 +71,7 @@ function(set_project_warnings project_target)
   # Set warnings
   if(MSVC)
     set(_PROJECT_WARNINGS ${_MSVC_WARNINGS})
-  elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     set(_PROJECT_WARNINGS ${_CLANG_WARNINGS})
   else()
     set(_PROJECT_WARNINGS ${_GCC_WARNINGS})

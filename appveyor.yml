@@ -14,7 +14,7 @@ clone_folder: c:\projects\source
 build_script:
   - mkdir build
   - cd build
-  - cmake c:\projects\source -G "Visual Studio 16 2019"
+  - cmake c:\projects\source -G "Visual Studio 16 2019" -A x64
   - cmake --build . --config "Release"
 
 # Custom test script
