@@ -17,19 +17,19 @@ echo -e "\e[93m-- Running tests\e[39m"
 ctest -j $(nproc) --output-on-failure -VV
 
 # Coverage
-COV=$(cmake -LA -N . | grep ENABLE_COVERAGE:BOOL=ON) 
-if [ ! -z "$COV" ]; then # Does CMake's cache has ENABLE_COVERAGE:BOOL=ON?
-    # Generate coverage report
-    if command -v lcov >/dev/null 2>&1; then # Does lcov exist?
-        printf '\n'
-        echo -e "\e[93m-- Generating lcov info\e[39m"
-        lcov --capture --directory . --output-file coverage_unfiltered.info
-        echo -e "\e[93m-- Filtering out dependencies\e[39m"
-        lcov --remove coverage_unfiltered.info $PWD'/gtest/*' '/usr/*' --output-file coverage.info
-        echo -e "\e[93m-- Generating HTML report\e[39m"
-        genhtml coverage.info --output-directory coverage_report
-        echo -e "\e[93m-- Generating done\e[39m"
-    fi
-fi
+#COV=$(cmake -LA -N . | grep ENABLE_COVERAGE:BOOL=ON) 
+#if [ ! -z "$COV" ]; then # Does CMake's cache has ENABLE_COVERAGE:BOOL=ON?
+#    # Generate coverage report
+#    if command -v lcov >/dev/null 2>&1; then # Does lcov exist?
+#        printf '\n'
+#        echo -e "\e[93m-- Generating lcov info\e[39m"
+#        lcov --capture --directory . --output-file coverage_unfiltered.info
+#        echo -e "\e[93m-- Filtering out dependencies\e[39m"
+#        lcov --remove coverage_unfiltered.info $PWD'/gtest/*' '/usr/*' --output-file coverage.info
+#        echo -e "\e[93m-- Generating HTML report\e[39m"
+#        genhtml coverage.info --output-directory coverage_report
+#        echo -e "\e[93m-- Generating done\e[39m"
+#    fi
+#fi
 
 #--base-directory .
