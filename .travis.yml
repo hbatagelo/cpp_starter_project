@@ -50,11 +50,11 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-9
+            - g++-8
             - lcov
             - doxygen
       env:
-        - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8 && GCOV=gcov-8"
 
 before_script:
   - eval "${MATRIX_EVAL}"
