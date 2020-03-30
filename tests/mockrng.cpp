@@ -1,8 +1,8 @@
 #include <iostream>
 #include <utility>
 
-#include "gmock/gmock.h"
-#include "gtest/gtest.h"
+#include <gmock/gmock.h>
+#include <gtest/gtest.h>
 
 #include "coin-flipper.hpp"
 

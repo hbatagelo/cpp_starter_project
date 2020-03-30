@@ -8,6 +8,9 @@ set(PROJ_TARGET intro)
 set(PROJLIB_TARGET introlib)
 set(TEST_TARGET tester)
 
+option(BUILD_TESTING "Build the testing tree" ON)
+option(ENABLE_COVERAGE "Enable coverage reporting" OFF)
+
 # ccache, IPO and default configuration
 include(cmake/StandardProjectSettings.cmake)
 
@@ -44,7 +47,10 @@ endif()
 set(CONAN_EXTRA_REQUIRES "")
 set(CONAN_EXTRA_OPTIONS "")
 
-# Google Test set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} gtest/1.8.1@bincrafters/stable)
+# Google Tests
+if(BUILD_TESTING)
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} gtest/[>=1.10.0])
+endif()
 
 # Dear ImGui
 if(CPP_STARTER_USE_IMGUI)
@@ -61,11 +67,9 @@ endif()
 
 # Conan
 include(cmake/Conan.cmake)
-# run_conan()
+run_conan()
 
 # Tests
-option(BUILD_TESTING "Build the testing tree" ON)
-# option(ENABLE_COVERAGE "Enable coverage reporting" OFF)
 
 # Only build tests if we are the top-level project Allows this to be used by super projects with `add_subdirectory`
 if(BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
