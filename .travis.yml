@@ -22,8 +22,7 @@ before_install:
 #  - cd ..
 
   - wget http://mirrors.us.kernel.org/ubuntu//pool/universe/l/lcov/lcov_1.14-2_all.deb
-  - sudo dpkg -i lcov_1.14-2_all.deb
-  - sudo apt --fix-broken install
+  - sudo apt install lcov_1.14-2_all.deb
 
 install:
   - pip install --user conan cmake
