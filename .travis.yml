@@ -75,12 +75,12 @@ after_success:
       cd ${TRAVIS_BUILD_DIR}
       which gcov
       which gcov-9
-      lcov --version       
+      lcov --version
       lcov --capture --directory . --output-file coverage.info --gcov-tool /usr/bin/gcov-9
-      lcov --remove coverage.info '*conan/data/*' '/usr/*' --output-file coverage.info
-      lcov --list coverage.info
+      lcov --remove coverage.info '*conan/data/*' '/usr/*' --output-file coverage.info --gcov-tool /usr/bin/gcov-9
+      lcov --list coverage.info --gcov-tool /usr/bin/gcov-9
       # Uploading report to Codecov
-      bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+      bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
     fi
 
 notifications:
