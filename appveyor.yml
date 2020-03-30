@@ -1,14 +1,22 @@
 version: 1.0.{build}
 
 # Build worker image (VM template)
-image:
-  - Visual Studio 2019
+#image:
+#  - Visual Studio 2019
 
-platform:
-  - x64
+#platform:
+#  - x64
+
+environment:
+  matrix:
+    # Windows w/64 bit Geo & python 3.6
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      PYTHON: "3.6"
+#      PYTHON: "C:\\Python36-x64"
+#      PYTHON_ARCH: "64"  
 
 stack:
-  - python 3.6  
+  - python %PYTHON%
 
 # Clone directory
 clone_folder: c:\projects\source
