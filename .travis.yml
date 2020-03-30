@@ -13,11 +13,16 @@ env:
    #   via the "travis encrypt" command using the project repo's public key
    - secure: "pPg/vC9q6k6Yi9JynXu607w64mjmXY3OkW1HoskygoYkC9leMuQajtU1rtnNXrQ0n1Tuovm+vntpw2YJAcHMZXJlneb/XuILMZEfysIEHtCxuX6z0bXmAnBZOG+AG9Lw0Q/sZ/1EgMjQaqNLRJCLju0oyoc1xpS3b0nLieKAkj65DmTfY6BB0x7gnvJt1Crbx9DOe1RKZS1YnIEbZuOTV0IDHvGN4R7vrY7eVIhHz5+4P8cZcgrUvfSGWR1Ak/oUu1lbrNFaOzuyWZyy89PZHljBOfeXjfQ224qc5RSEiIe9qQIR14fmvwZ2Yq4qvMz2duZH2Ti1WDVNNw7WxBVq3tjFHDPBd5NBSTSzg6SVakHeKuy1VRrNs0EN+FY7MgW7kXrtSvbSZYpcKdlViflLUSecG+VLzAHMCecWw0dGGdKwOBlF1ToMiNJ84UE646jnJm01jJqM8KCVAnf8/VoDbVPymrP+DLvnxjl+CC7676oBStlKXgdvVqOQJNqtIGeXjiBt2eQSeRguZWaxQLuZ+VvImUuS052RpxNsf7c4q2sy3torrP9g+8RTJ6pUf8oq7I2fbJKU/WCgAxNkZkMvHTj6lQSsQOd0wOeWteHxQD83KngwcU5LWKk+ayPn5VHhFpoGzqd5KR2AORtk1cSyqT2JeWrUqWH+dJ/wjaiULnE="
 
-install:
-  - pip install --user conan cmake
-
 before_install:
   - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+    # Install lcov 1.14
+  - wget http://downloads.sourceforge.net/ltp/lcov-1.14.tar.gz
+  - tar -xvf lcov-1.14.tar.gz
+  - cd lcov-1.14 && sudo make install
+  - cd ..
+
+install:
+  - pip install --user conan cmake
 
 addons:
   coverity_scan:
@@ -69,7 +74,7 @@ after_success:
       cd ${TRAVIS_BUILD_DIR}
       lcov --version
       lcov --capture --directory . --output-file coverage.info
-      #lcov --remove coverage.info $PWD'/gtest/*' '/usr/*' "${HOME}" --output-file coverage.info
+      lcov --remove coverage.info '*conan/data/*' '/usr/*' --output-file coverage.info
       lcov --list coverage.info
       # Uploading report to Codecov
       bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
