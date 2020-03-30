@@ -44,7 +44,7 @@ If you use [Clang Power Tools](https://clangpowertools.com/download.html) in VS 
 
 ### Clang-tidy
 
-The warning flags for clang, listed at ``cmake/CompilerWarnings.cmake``, can be used as extra arguments (`--extra-arg`) of clang-tidy. Alternatively, the following flags can be used:
+The warning flags for clang listed at ``cmake/CompilerWarnings.cmake`` can be used as extra arguments (`--extra-arg`) of clang-tidy. Alternatively, the following flags can be used:
 
 ```sh
 -Weverything
