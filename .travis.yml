@@ -20,6 +20,7 @@ before_install:
   - tar -xvf lcov-1.14.tar.gz
   - cd lcov-1.14 && sudo make install
   - cd ..
+  - which gcov-9
 
 install:
   - pip install --user conan cmake
@@ -72,8 +73,10 @@ after_success:
     # Create coverage reporting (gcc only)
     if [ "$TRAVIS_COMPILER" == "gcc" ]; then
       cd ${TRAVIS_BUILD_DIR}
-      lcov --version
-      lcov --capture --directory . --output-file coverage.info
+      which gcov
+      which gcov-9
+      lcov --version       
+      lcov --capture --directory . --output-file coverage.info --gcov-tool /usr/bin/gcov-9
       lcov --remove coverage.info '*conan/data/*' '/usr/*' --output-file coverage.info
       lcov --list coverage.info
       # Uploading report to Codecov

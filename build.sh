@@ -24,7 +24,7 @@ if [[ ! -z TRAVIS ]]; then
         if command -v lcov >/dev/null 2>&1; then # Does lcov exist?
             printf '\n'
             echo -e "\e[93m-- Generating lcov info\e[39m"
-            lcov --capture --directory . --output-file coverage.info --gcov-tool /usr/bin/gcov
+            lcov --capture --directory . --output-file coverage.info
             echo -e "\e[93m-- Filtering out dependencies\e[39m"
             lcov --remove coverage.info '*conan/data/*' '/usr/*' --output-file coverage.info
             echo -e "\e[93m-- Generating HTML report\e[39m"
