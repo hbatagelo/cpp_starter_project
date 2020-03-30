@@ -17,7 +17,6 @@ echo -e "\e[93m-- Running tests\e[39m"
 ctest -j $(nproc) --output-on-failure -VV
 
 # Coverage
-#if [ -n "$TRAVIS" ]; then
 COV=$(cmake -LA -N . | grep ENABLE_COVERAGE:BOOL=ON)
 if [[ ! -z "$COV" && -z ${TRAVIS} ]]; then # Does CMake's cache has ENABLE_COVERAGE:BOOL=ON?
     # Generate coverage report
@@ -32,5 +31,5 @@ if [[ ! -z "$COV" && -z ${TRAVIS} ]]; then # Does CMake's cache has ENABLE_COVER
         echo -e "\e[93m-- Generating done\e[39m"
     fi
 fi
-#fi
+
 #--base-directory .

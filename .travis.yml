@@ -21,6 +21,7 @@ before_install:
 
 install:
   - pip install --user conan cmake
+  - conan profile update settings.compiler.libcxx=libstdc++11 default
 
 addons:
   coverity_scan:
