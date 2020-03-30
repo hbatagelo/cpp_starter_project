@@ -72,7 +72,7 @@ after_success:
     if [ "$TRAVIS_COMPILER" == "gcc" ]; then
       cd ${TRAVIS_BUILD_DIR}
       lcov --version
-      lcov --capture --directory . --output-file coverage.info --gcov-tool gcov-9
+      lcov --capture --directory . --output-file coverage.info --gcov-tool /usr/bin/gcov-9
       lcov --remove coverage.info '*conan/data/*' '/usr/*' --output-file coverage.info
       lcov --list coverage.info
       # Uploading report to Codecov
