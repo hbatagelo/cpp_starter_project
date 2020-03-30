@@ -54,11 +54,9 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-9
-            #- lcov
             - doxygen
       env:
         - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
-        # && GCOV=gcov-9"
 
 before_script:
   - eval "${MATRIX_EVAL}"

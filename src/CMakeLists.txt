@@ -6,12 +6,12 @@ add_executable(${PROJ_TARGET} main.cpp ../include/coin-flipper.hpp ../include/fo
 target_include_directories(${PROJLIB_TARGET} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/include)
 target_include_directories(${PROJ_TARGET} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/include)
 
+# Use C++20
+target_compile_features(${PROJLIB_TARGET} PRIVATE cxx_std_20)
+target_compile_features(${PROJ_TARGET} PRIVATE cxx_std_20)
+
 # Linked libraries
 target_link_libraries(${PROJ_TARGET} PRIVATE ${PROJLIB_TARGET} ${OPTIONS_TARGET} ${WARNINGS_TARGET})
-
-# Use C++20
-target_compile_features(${PROJLIB_TARGET} PRIVATE cxx_std_17)
-target_compile_features(${PROJ_TARGET} PRIVATE cxx_std_17)
 
 # Extra arguments for MSVC
 if(MSVC)
