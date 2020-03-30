@@ -10,16 +10,25 @@ platform:
 # Clone directory
 clone_folder: c:\projects\source
 
+install:
+  - cmd: echo "Downloading conan..."
+  - cmd: set PATH=%PATH%;%PYTHON%/Scripts/
+  - cmd: pip.exe install conan
+  - cmd: conan user # Create the conan data directory
+  - cmd: conan --version
+
 # Custom build script
 build_script:
-  - mkdir build
-  - cd build
-  - cmake c:\projects\source -G "Visual Studio 16 2019" -A x64
-  - cmake --build . --config "Release"
+  - cmd: mkdir build
+  - cmd: conan install .
+  - cmd: cd build
+  - cmd: cmake ../ -DBUILD_TEST=TRUE  -G "Visual Studio 16 2019" -A x64
+#  - cmake c:\projects\source -G "Visual Studio 16 2019" -A x64
+  - cmd: cmake --build . --config Release  
 
 # Custom test script
 test_script:
-  - ctest -C Release -VV
+  - cmd: ctest -C Release -VV
 
 artifacts:
   - path: 'build\src\Release\intro.exe'
