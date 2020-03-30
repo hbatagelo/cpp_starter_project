@@ -24,9 +24,9 @@ if [[ -z TRAVIS ]]; then
         if command -v lcov >/dev/null 2>&1; then # Does lcov exist?
             printf '\n'
             echo -e "\e[93m-- Generating lcov info\e[39m"
-            lcov --capture --directory . --output-file coverage_unfiltered.info
+            lcov --capture --directory . --output-file coverage.info
             echo -e "\e[93m-- Filtering out dependencies\e[39m"
-            lcov --remove coverage_unfiltered.info $PWD'/gtest/*' '/usr/*' --output-file coverage.info
+            # lcov --remove coverage.info $PWD'/gtest/*' '/usr/*' --output-file coverage.info
             echo -e "\e[93m-- Generating HTML report\e[39m"
             genhtml coverage.info --output-directory coverage_report
             echo -e "\e[93m-- Generating done\e[39m"

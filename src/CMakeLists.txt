@@ -25,11 +25,10 @@ if(ENABLE_COVERAGE)
     add_custom_command(
       TARGET ${PROJ_TARGET}
       POST_BUILD
-      # ${CMAKE_CURRENT_BINARY_DIR} is project_name/build/src ${CMAKE_CURRENT_SOURCE_DIR} is project_name/src
-      # ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} is project_name/build/bin
+      # ${CMAKE_CURRENT_BINARY_DIR} is project_name/build/src;
+      # ${CMAKE_CURRENT_SOURCE_DIR} is project_name/src;
+      # ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} is project_name/build/bin;
       COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJ_TARGET} > /dev/null
-      # COMMAND ${CMAKE_CURRENT_BINARY_DIR}/${PROJ_TARGET} > /dev/null COMMAND ${CMAKE_COMMAND} -E echo
-      # ${CMAKE_CURRENT_BINARY_DIR} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
       COMMENT "Post build execution")
   endif()
 endif()
