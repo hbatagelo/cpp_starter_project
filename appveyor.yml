@@ -15,9 +15,6 @@ environment:
       PYTHON_VERSION: "3.7.x"
       PYTHON_ARCH: "64"
 
-init:
-  - ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%  
-
 # Clone directory
 clone_folder: c:\projects\source
 
@@ -25,7 +22,7 @@ install:
   - cmd: set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
   - cmd: python --version
   - cmd: python -m pip install -U pip
-  - cmd: python -m easy_install -U setuptools
+#  - cmd: python -m easy_install -U setuptools
   - cmd: echo "Downloading conan..."
   - cmd: set PATH=%PATH%;%PYTHON%/Scripts/
   - cmd: pip install conan

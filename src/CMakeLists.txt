@@ -9,8 +9,9 @@ target_include_directories(${PROJ_TARGET} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${
 # Linked libraries
 target_link_libraries(${PROJ_TARGET} PRIVATE ${PROJLIB_TARGET} ${OPTIONS_TARGET} ${WARNINGS_TARGET})
 
-# Use C++17 target_compile_features(${PROJLIB_TARGET} PRIVATE cxx_std_17) target_compile_features(${PROJ_TARGET} PRIVATE
-# cxx_std_17)
+# Use C++20
+target_compile_features(${PROJLIB_TARGET} PRIVATE cxx_std_20)
+target_compile_features(${PROJ_TARGET} PRIVATE cxx_std_20)
 
 # Extra arguments for MSVC
 if(MSVC)
@@ -24,8 +25,7 @@ if(ENABLE_COVERAGE)
     add_custom_command(
       TARGET ${PROJ_TARGET}
       POST_BUILD
-      # ${CMAKE_CURRENT_BINARY_DIR} is project_name/build/src
-      # ${CMAKE_CURRENT_SOURCE_DIR} is project_name/src
+      # ${CMAKE_CURRENT_BINARY_DIR} is project_name/build/src ${CMAKE_CURRENT_SOURCE_DIR} is project_name/src
       # ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} is project_name/build/bin
       COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJ_TARGET} > /dev/null
       # COMMAND ${CMAKE_CURRENT_BINARY_DIR}/${PROJ_TARGET} > /dev/null COMMAND ${CMAKE_COMMAND} -E echo
