@@ -16,11 +16,6 @@ env:
 before_install:
   - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
     # Install lcov 1.14
-#  - wget http://downloads.sourceforge.net/ltp/lcov-1.14.tar.gz
-#  - tar -xvf lcov-1.14.tar.gz
-#  - cd lcov-1.14 && sudo make install
-#  - cd ..
-
   - wget http://mirrors.us.kernel.org/ubuntu//pool/universe/l/lcov/lcov_1.14-2_all.deb
   - sudo apt install ./lcov_1.14-2_all.deb
 
@@ -59,10 +54,11 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-9
-            - lcov
+            #- lcov
             - doxygen
       env:
-        - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9 && GCOV=gcov-9"
+        - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
+        # && GCOV=gcov-9"
 
 before_script:
   - eval "${MATRIX_EVAL}"
@@ -76,9 +72,9 @@ after_success:
     if [ "$TRAVIS_COMPILER" == "gcc" ]; then
       cd ${TRAVIS_BUILD_DIR}
       lcov --version
-      lcov --capture --directory . --output-file coverage.info --gcov-tool /usr/bin/gcov-9
-      lcov --remove coverage.info '*conan/data/*' '/usr/*' --output-file coverage.info --gcov-tool /usr/bin/gcov-9
-      lcov --list coverage.info --gcov-tool /usr/bin/gcov-9
+      lcov --capture --directory . --output-file coverage.info --gcov-tool gcov-9
+      lcov --remove coverage.info '*conan/data/*' '/usr/*' --output-file coverage.info
+      lcov --list coverage.info
       # Uploading report to Codecov
       bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
     fi
