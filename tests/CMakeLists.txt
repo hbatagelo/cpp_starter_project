@@ -9,7 +9,7 @@ add_test(NAME Tester COMMAND ${TEST_TARGET})
 target_include_directories(${TEST_TARGET} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${gtest_SOURCE_DIR}
                                                   ${gtest_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/include)
 
-target_compile_features(${TEST_TARGET} PRIVATE cxx_std_17)
+# target_compile_features(${TEST_TARGET} PRIVATE cxx_std_17)
 
 # Standard linking to gtest stuff
 target_link_libraries(${TEST_TARGET} PRIVATE gtest gtest_main gmock gmock_main)

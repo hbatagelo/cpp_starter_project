@@ -18,7 +18,7 @@ ctest -j $(nproc) --output-on-failure -VV
 
 # Coverage
 COV=$(cmake -LA -N . | grep ENABLE_COVERAGE:BOOL=ON) 
-if [[] ! -z "$COV" && -z "${TRAVIS_BUILD_DIR}" ]]; then # Does CMake's cache has ENABLE_COVERAGE:BOOL=ON?
+if [[] ! -z "$COV" && -z "${TRAVIS}" ]]; then # Does CMake's cache has ENABLE_COVERAGE:BOOL=ON?
     # Generate coverage report
     if command -v lcov >/dev/null 2>&1; then # Does lcov exist?
         printf '\n'
