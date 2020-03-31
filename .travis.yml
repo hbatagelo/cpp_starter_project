@@ -58,6 +58,7 @@ matrix:
             - doxygen
       env:
         - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
+        - GCOV="gcov-9"
 
 before_script:
   - eval "${MATRIX_EVAL}"
@@ -71,7 +72,7 @@ after_success:
     if [ "$TRAVIS_COMPILER" == "gcc" ]; then
       cd ${TRAVIS_BUILD_DIR}
       lcov --version
-      lcov --capture --directory . --output-file coverage.info --gcov-tool gcov-9
+      lcov --capture --directory . --output-file coverage.info --gcov-tool ${GCOV}
       lcov --remove coverage.info '*conan/data/*' '/usr/*' --output-file coverage.info
       lcov --list coverage.info
       # Uploading report to Codecov
