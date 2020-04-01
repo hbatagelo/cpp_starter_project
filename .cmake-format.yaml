@@ -9,6 +9,11 @@ additional_commands:
       HEADERS: '*'
       SOURCES: '*'
 
+# If comment markup is enabled, don't reflow the first comment block in each
+# listfile. Use this to preserve formatting of your copyright/license
+# statements.
+first_comment_is_literal: True
+
 # What character to use for bulleted lists
 bullet_char: '*'
 
@@ -23,7 +28,13 @@ dangle_parens: false
 line_ending: unix
 
 # How wide to allow formatted cmake files
-line_width: 120
+line_width: 80
+
+# Regular expression pattern describing valid macro names
+macro_pattern: '[0-9a-z_]+'
+
+# Require no more than this many newlines between statements
+max_statement_spacing: 2
 
 # If true, separate flow control names from their parentheses with a space
 separate_ctrl_name_with_space: false

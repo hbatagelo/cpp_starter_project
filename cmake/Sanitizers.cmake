@@ -2,7 +2,8 @@
 function(enable_sanitizers project_target)
 
   # Code coverage
-  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES
+                                            "Clang")
     option(ENABLE_COVERAGE "Enable coverage reporting for gcc/clang" FALSE)
     if(ENABLE_COVERAGE)
       target_compile_options(${project_target} INTERFACE --coverage -O0 -g)
@@ -29,7 +30,8 @@ function(enable_sanitizers project_target)
     endif()
 
     # UB sanitizer
-    option(ENABLE_SANITIZER_UNDEFINED_BEHAVIOR "Enable undefined behavior sanitizer" FALSE)
+    option(ENABLE_SANITIZER_UNDEFINED_BEHAVIOR
+           "Enable undefined behavior sanitizer" FALSE)
     if(ENABLE_SANITIZER_UNDEFINED_BEHAVIOR)
       list(APPEND _SANITIZERS "undefined")
     endif()
@@ -47,8 +49,10 @@ function(enable_sanitizers project_target)
   # Set list of sanitizers if not empty
   if(LIST_OF_SANITIZERS)
     if(NOT "${LIST_OF_SANITIZERS}" STREQUAL "")
-      target_compile_options(${project_target} INTERFACE -fsanitize=${LIST_OF_SANITIZERS})
-      target_link_libraries(${project_target} INTERFACE -fsanitize=${LIST_OF_SANITIZERS})
+      target_compile_options(${project_target}
+                             INTERFACE -fsanitize=${LIST_OF_SANITIZERS})
+      target_link_libraries(${project_target}
+                            INTERFACE -fsanitize=${LIST_OF_SANITIZERS})
     endif()
   endif()
 

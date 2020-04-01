@@ -39,8 +39,10 @@ include(cmake/StaticAnalyzers.cmake)
 # Very basic PCH example
 option(ENABLE_PCH "Enable Precompiled Headers" OFF)
 if(ENABLE_PCH)
-  # This sets a global PCH parameter, each project will build its own PCH, which is a good idea if any #define's change
-  target_precompile_headers(${OPTIONS_TARGET} INTERFACE <vector> <string> <map> <utility>)
+  # This sets a global PCH parameter, each project will build its own PCH, which
+  # is a good idea if any #define's change
+  target_precompile_headers(${OPTIONS_TARGET} INTERFACE <vector> <string> <map>
+                            <utility>)
 endif()
 
 # Set up some extra Conan dependencies based on our needs before loading Conan
@@ -55,8 +57,9 @@ endif()
 # Dear ImGui
 if(CPP_STARTER_USE_IMGUI)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} imgui-sfml/[>=2.1])
-  # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sfml:shared=False sfml:graphics=True sfml:audio=False
-  # sfml:window=True libalsa:disable_python=True)
+  # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sfml:shared=False
+  # sfml:graphics=True sfml:audio=False sfml:window=True
+  # libalsa:disable_python=True)
 endif()
 
 # SDL
@@ -71,12 +74,14 @@ run_conan()
 
 # Tests
 
-# Only build tests if we are the top-level project Allows this to be used by super projects with `add_subdirectory`
+# Only build tests if we are the top-level project Allows this to be used by
+# super projects with `add_subdirectory`
 if(BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
   enable_testing()
   add_subdirectory(tests)
   # Disable IPO for tests
-  set_property(TARGET ${TEST_TARGET} PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
+  set_property(TARGET ${TEST_TARGET} PROPERTY INTERPROCEDURAL_OPTIMIZATION
+                                              FALSE)
 endif()
 
 # Define project sources

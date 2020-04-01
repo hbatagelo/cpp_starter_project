@@ -1,17 +1,27 @@
 # Add targets
-add_library(${PROJLIB_TARGET} coin-flipper.cpp foo.cpp ../include/coin-flipper.hpp ../include/foo.hpp)
-add_executable(${PROJ_TARGET} main.cpp ../include/coin-flipper.hpp ../include/foo.hpp)
+add_library(${PROJLIB_TARGET} coin-flipper.cpp foo.cpp
+                              ../include/coin-flipper.hpp ../include/foo.hpp)
+add_executable(${PROJ_TARGET} main.cpp ../include/coin-flipper.hpp
+                              ../include/foo.hpp)
 
 # Includes
-target_include_directories(${PROJLIB_TARGET} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/include)
-target_include_directories(${PROJ_TARGET} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/include)
+target_include_directories(
+  ${PROJLIB_TARGET} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
+                            ${PROJECT_SOURCE_DIR}/include)
+target_include_directories(
+  ${PROJ_TARGET}
+  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/include
+          ${CONAN_EIGEN_ROOT}/include)
 
 # Use C++20
 target_compile_features(${PROJLIB_TARGET} PRIVATE cxx_std_20)
 target_compile_features(${PROJ_TARGET} PRIVATE cxx_std_20)
 
 # Linked libraries
-target_link_libraries(${PROJ_TARGET} PRIVATE ${PROJLIB_TARGET} ${OPTIONS_TARGET} ${WARNINGS_TARGET})
+target_link_libraries(
+  ${PROJ_TARGET}
+  PUBLIC CONAN_PKG::eigen
+  PRIVATE ${PROJLIB_TARGET} ${OPTIONS_TARGET} ${WARNINGS_TARGET})
 
 # Extra arguments for MSVC
 if(MSVC)
@@ -21,12 +31,14 @@ endif()
 
 # Post build
 if(ENABLE_COVERAGE)
-  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES
+                                            "Clang")
     add_custom_command(
       TARGET ${PROJ_TARGET}
       POST_BUILD
-      # ${CMAKE_CURRENT_BINARY_DIR} is project_name/build/src; ${CMAKE_CURRENT_SOURCE_DIR} is project_name/src;
-      # ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} is project_name/build/bin;
+      # ${CMAKE_CURRENT_BINARY_DIR} is project_name/build/src
+      # ${CMAKE_CURRENT_SOURCE_DIR} is project_name/src
+      # ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} is project_name/build/bin
       COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJ_TARGET} > /dev/null
       COMMENT "Post build execution")
   endif()
