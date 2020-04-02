@@ -24,7 +24,6 @@ macro(run_conan)
     ${CONAN_EXTRA_REQUIRES}
     catch2/[>=2.11.0]
     docopt.cpp/[>=0.6.2]
-    eigen/[>=3.3.7]
     fmt/[>=6.1.2]
     spdlog/[>=1.5.0]
     OPTIONS
@@ -33,4 +32,8 @@ macro(run_conan)
     CMAKE_TARGETS # individual targets to link to
     BUILD
     missing)
+
+  # Use the CMake automatically detected values instead of the ones defined in
+  # the profile
+  conan_cmake_run(PROFILE default PROFILE_AUTO ALL)
 endmacro()

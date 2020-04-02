@@ -8,8 +8,8 @@ set(PROJ_TARGET intro)
 set(PROJLIB_TARGET introlib)
 set(TEST_TARGET tester)
 
-option(BUILD_TESTING "Build the testing tree" ON)
 option(ENABLE_COVERAGE "Enable coverage reporting" OFF)
+option(BUILD_TESTING "Build the testing tree" ON)
 
 # ccache, IPO and default configuration
 include(cmake/StandardProjectSettings.cmake)
@@ -54,8 +54,21 @@ if(BUILD_TESTING)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} gtest/[>=1.10.0])
 endif()
 
+# Eigen
+option(USE_EIGEN "Use Eigen" ON)
+if(USE_EIGEN)
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} eigen/[>=3.3.7])
+endif()
+
+# OpenCV
+option(USE_OPENCV "Use OpenCV" ON)
+if(USE_OPENCV)
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} opencv/[>=4.1.1])
+endif()
+
 # Dear ImGui
-if(CPP_STARTER_USE_IMGUI)
+option(USE_IMGUI "Use Dear ImGui" OFF)
+if(USE_IMGUI)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} imgui-sfml/[>=2.1])
   # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sfml:shared=False
   # sfml:graphics=True sfml:audio=False sfml:window=True
@@ -63,7 +76,8 @@ if(CPP_STARTER_USE_IMGUI)
 endif()
 
 # SDL
-if(CPP_STARTER_USE_SDL)
+option(USE_SDL "Use SDL" OFF)
+if(USE_SDL)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} sdl2/[>=2.0.12])
   # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl2:wayland=True)
 endif()

@@ -67,7 +67,9 @@ function(set_project_warnings project_target)
   # Whether warnings are treated as errors
   if(WARNINGS_AS_ERRORS)
     set(_CLANG_WARNINGS ${_CLANG_WARNINGS} -Werror)
-    set(_MSVC_WARNINGS ${_MSVC_WARNINGS} /WX)
+    # Disabled to avoid errors with Eigen
+
+    # set(_MSVC_WARNINGS ${_MSVC_WARNINGS} /WX)
   endif()
 
   # Set warning flags for GCC
