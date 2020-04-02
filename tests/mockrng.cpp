@@ -61,7 +61,7 @@ TEST_P(CoinFlipperTestFixture, CoinFlip) {
   EXPECT_EQ(expectedResult, result);
 }
 
-INSTANTIATE_TEST_CASE_P(
+INSTANTIATE_TEST_SUITE_P(
     ValidRandomNumberGenerated, CoinFlipperTestFixture,
     Values(std::make_pair(0.0, CoinFlipper::Result::Heads),
            std::make_pair(0.25, CoinFlipper::Result::Heads),

@@ -24,7 +24,7 @@ TEST(IndependentMethod, ResetsToZero2) {
 TEST(FooMethod, Increases1) {
   auto i = 0;
   Foo p;
-  i = p.bar(i);
+  i = Foo::bar(i);
   EXPECT_EQ(1, i);
 }
 
@@ -32,11 +32,11 @@ TEST(FooMethod, Increases1) {
 class FooTest : public ::testing::Test {
 protected:
   FooTest() = default;
-  virtual void SetUp() override {}
-  virtual void TearDown() override {}
+  void SetUp() override {}
+  void TearDown() override {}
 
   // Objects declared here can be used by all tests in the test case for Foo.
-  Foo p;
+  // Foo p;
 };
 
 // Test case must be called the class above
@@ -44,7 +44,7 @@ protected:
 // test primer)
 TEST_F(FooTest, MethodBarDoesAbc) {
   auto i = 0;
-  i = p.bar(i); // we have access to p, declared in the fixture
+  i = Foo::bar(i); // we have access to p, declared in the fixture
   EXPECT_EQ(1, i);
 }
 

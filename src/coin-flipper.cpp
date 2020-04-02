@@ -4,12 +4,12 @@
 
 #include "coin-flipper.hpp"
 
-double Rng::generate(double min, double max) {
-  auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-  std::default_random_engine generator(static_cast<unsigned>(seed));
-  std::uniform_real_distribution<> rdist(min, max);
-  return rdist(generator);
-}
+// double Rng::generate(double min, double max) {
+//   auto seed = std::chrono::system_clock::now().time_since_epoch().count();
+//   std::default_random_engine generator(static_cast<unsigned>(seed));
+//   std::uniform_real_distribution<> rdist(min, max);
+//   return rdist(generator);
+// }
 
 CoinFlipper::CoinFlipper(Rng *rng) : d_rng(rng) {}
 

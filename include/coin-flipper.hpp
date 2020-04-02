@@ -11,7 +11,7 @@ public:
   Rng(Rng &&) = delete;                 // Move constructor
   Rng &operator=(Rng &&) = delete;      // Move assignment
 
-  virtual double generate(double min, double max);
+  virtual double generate(double min, double max) = 0;
 };
 
 class CoinFlipper {

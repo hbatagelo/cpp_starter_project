@@ -40,8 +40,8 @@ int main() {
 
   std::cout << Foo::bar(x) << "\n";
 
-  Rng baseGenerator;
-  std::cout << baseGenerator.generate(0.0, 1.0) << "\n";
+  // Rng baseGenerator = Rng();
+  // std::cout << baseGenerator.generate(0.0, 1.0) << "\n";
 
   MyRng myGenerator;
 
