@@ -3,12 +3,15 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/700a7eed3d8340acbbeb7a495c123a33)](https://app.codacy.com/app/hbatagelo/cpp_starter_project?utm_source=github.com&utm_medium=referral&utm_content=hbatagelo/cpp_starter_project&utm_campaign=Badge_Grade_Dashboard) [![Build Status](https://travis-ci.org/hbatagelo/cpp_starter_project.svg?branch=master)](https://travis-ci.org/hbatagelo/cpp_starter_project) [![Build status](https://ci.appveyor.com/api/projects/status/66fs8jswu3760qak?svg=true)](https://ci.appveyor.com/project/hbatagelo/cpp-starter-project) [![codecov](https://codecov.io/gh/hbatagelo/cpp_starter_project/branch/master/graph/badge.svg)](https://codecov.io/gh/hbatagelo/cpp_starter_project)
 
 ---------
-A barebones cross-platform C++ project with continuous integration. Based on the [homonymous project](https://github.com/lefticus/cpp_starter_project) by Jason Turner. The example code for Googletest is based on the code from the [Introduction to Google Mock](http://donsoft.io/gmock-presentation/) talk by Donald Whyte.
+A barebones cross-platform C++ project with continuous integration using [Conan](https://conan.io) for package management and [CMake](https://cmake.org) as build system. It is based on Jason Turner's [homonymous project](https://github.com/lefticus/cpp_starter_project).
+
+The example code for Google Test is based on the code from the [Introduction to Google Mock](http://donsoft.io/gmock-presentation/) talk by Donald Whyte.
 
 ## Build Requirements
 
-*   [CMake](https://cmake.org) 3.10 or greater
-*   C++17-standard-compliant compiler
+* [CMake](https://cmake.org/download) 3.10 or greater
+* [Conan](https://conan.io/downloads.html)
+* C++20-standard-compliant compiler.
 
 ## Installation
 
@@ -38,23 +41,7 @@ cmake -G "Visual Studio 16" ..
 cmake --build . --config "Release"
 ```
 
-Run `gen_vs_ln.bat` to generate a [Visual Studio](https://visualstudio.microsoft.com/vs/) solution file targeted to x64 platform. By default, a solution file for version 16 is generated (in `./vs16/`). Use `15` as argument to generate a solution file for version 15 (in `./vs15/`).
-
-If you use [Clang Power Tools](https://clangpowertools.com/download.html) in VS version 16, you may experience crashes when running clang-format or clang-tidy after opening the project via the `Clone or check out code` or `Open a local folder` options in VS with CMake tools for Windows (tested with MSVC and clang-cl). These crashes can be prevented by opening the solution file instead. Once the solution is open, you can switch to the folder view.
-
-### Clang-tidy
-
-The warning flags for clang listed at ``cmake/CompilerWarnings.cmake`` can be used as extra arguments (`--extra-arg`) of clang-tidy. Alternatively, the following flags can be used:
-
-```sh
--Weverything
--Wno-c++11-compat
--Wno-c++98-compat
--Wno-c++98-compat-pedantic
--Wno-c++17-extensions
-```
-
-In addition, `-I./include` should be included to add the local header files outside `src` to the include search path. If the headers are not added to the search path, clang-tidy will complain about missing headers in VS Code.
+Another option is to use `gen_vs_ln.bat` to generate a [Visual Studio](https://visualstudio.microsoft.com/vs/) solution file. By default, a solution file for version 16 is generated (in `./vs16/`). Use `15` as argument to generate a solution file for version 15 (in `./vs15/`). These solutions are targeted to the x64 platform.
 
 ## License
 

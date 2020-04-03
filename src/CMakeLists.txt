@@ -27,6 +27,12 @@ endif()
 
 # OpenCV
 if(USE_OPENCV)
+  set(BUILD_opencv_apps OFF)
+  set(BUILD_EXAMPLES OFF)
+  set(BUILD_PERF_TESTS OFF)
+  set(BUILD_TESTS OFF)
+  set(BUILD DOCS OFF)
+  set(OpenCV_STATIC TRUE)
   find_package(OpenCV REQUIRED)
   target_include_directories(${PROJ_TARGET}
                              PRIVATE ${CONAN_OPENCV_ROOT}/include)
