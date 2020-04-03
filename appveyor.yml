@@ -8,7 +8,7 @@ environment:
       PYTHON_ARCH: "64"
 
 # Clone directory
-clone_folder: c:\projects\source
+#clone_folder: c:\projects\source
 
 install:
   - cmd: set PATH=%PYTHON%;%PYTHON%/Scripts;%PATH%
