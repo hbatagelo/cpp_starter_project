@@ -63,7 +63,8 @@ endif()
 # OpenCV
 option(USE_OPENCV "Use OpenCV" ON)
 if(USE_OPENCV)
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} opencv/[>=4.1.1])
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
+                           opencv/[>=4.1.1]@conan/stable)
 endif()
 
 # Dear ImGui

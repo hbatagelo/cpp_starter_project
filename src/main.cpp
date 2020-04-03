@@ -3,6 +3,8 @@
 #include <random>
 
 #include <Eigen/Core>
+#include <opencv2/core/types_c.h>
+#include <opencv2/opencv.hpp>
 
 #include "coin-flipper.hpp"
 #include "foo.hpp"
@@ -56,4 +58,15 @@ int main() {
                           : std::string("Tails");
 
   std::cout << "Result: " << result << "\n";
+
+  // OpenCV
+
+  // initialize a 120X350 matrix of black pixels:
+  cv::Mat output = cv::Mat::zeros(120, 350, CV_8UC3);
+
+  // write text on the matrix:
+  putText(output, "Hello World :)", cvPoint(15, 70), cv::FONT_HERSHEY_PLAIN, 3,
+          cvScalar(0, 255, 0), 4);
+
+  return 0;
 }

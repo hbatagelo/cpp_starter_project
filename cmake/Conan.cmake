@@ -31,9 +31,9 @@ macro(run_conan)
     BASIC_SETUP
     CMAKE_TARGETS # individual targets to link to
     BUILD
-    missing)
-
-  # Use the CMake automatically detected values instead of the ones defined in
-  # the profile
-  conan_cmake_run(PROFILE default PROFILE_AUTO ALL)
+    missing
+    ENV
+    CC=${CMAKE_C_COMPILER}
+    ENV
+    CXX=${CMAKE_CXX_COMPILER})
 endmacro()
