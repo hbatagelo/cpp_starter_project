@@ -23,7 +23,7 @@ install:
 build_script:
   - cmd: mkdir build
   - cmd: cd build
-  - cmd: cmake -G "Ninja" -A x64 ..
+  - cmd: cmake -G "Ninja" ..
   - cmd: cmake --build . --config RelWithDebInfo
 
 # Custom test script
