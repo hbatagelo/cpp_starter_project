@@ -35,7 +35,7 @@ git clone https://github.com/hbatagelo/cpp_starter_project
 cd cpp_starter_project
 mkdir build
 cd build
-cmake -G "Visual Studio 16 2019" -DCMAKE_TOOLCHAIN_FILE=conan_paths.cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake -G "Visual Studio 16 2019" -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . --config "Release"
 ```
 

@@ -24,7 +24,7 @@ install:
 build_script:
   - cmd: mkdir build
   - cmd: cd build
-  - cmd: cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_TOOLCHAIN_FILE=conan_paths.cmake -DCMAKE_BUILD_TYPE=Release ..
+  - cmd: cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release ..
   - cmd: cmake --build . --config Release --target install
 
 # Custom test script
