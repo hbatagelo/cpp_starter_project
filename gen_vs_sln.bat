@@ -27,5 +27,5 @@ exit /b
 echo Generating solution file for Visual Studio version %ver%...
 mkdir vs%ver%
 cd vs%ver%
-cmake -G "Visual Studio %ver%" -A x64 ..
+cmake -G "Visual Studio %ver%" -A x64 -DCMAKE_TOOLCHAIN_FILE=conan_paths.cmake -DCMAKE_BUILD_TYPE=Release ..
 echo Done!

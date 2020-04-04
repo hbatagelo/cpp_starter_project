@@ -35,11 +35,11 @@ git clone https://github.com/hbatagelo/cpp_starter_project
 cd cpp_starter_project
 mkdir build
 cd build
-cmake -G "Visual Studio 16" ..
+cmake -G "Visual Studio 16 2019" -DCMAKE_TOOLCHAIN_FILE=conan_paths.cmake -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . --config "Release"
 ```
 
-It is also possible to use `gen_vs_ln.bat` to generate a [Visual Studio](https://visualstudio.microsoft.com/vs/) solution file. By default, a solution file for version 16 is generated (in `./vs16/`). Use `15` as argument to generate a solution file for version 15 (in `./vs15/`). These solution files are targeted to the x64 platform.
+It is also possible to use `gen_vs_ln.bat` to generate a [Visual Studio](https://visualstudio.microsoft.com/vs/) solution file. By default, a solution file for version 16 (VS 2019) is generated (in `./vs16/`). Use `15` as argument to generate a solution file for version 15 (in `./vs15/`). These solution files are targeted to the x64 platform.
 
 ## License
 

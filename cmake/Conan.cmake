@@ -35,5 +35,7 @@ macro(run_conan)
     ENV
     CC=${CMAKE_C_COMPILER}
     ENV
-    CXX=${CMAKE_CXX_COMPILER})
+    CXX=${CMAKE_CXX_COMPILER}
+    GENERATORS
+    cmake_paths)
 endmacro()

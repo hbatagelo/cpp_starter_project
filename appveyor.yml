@@ -6,16 +6,17 @@ environment:
       PYTHON: "C:\\Python37-x64"
       PYTHON_VERSION: "3.7.x"
       PYTHON_ARCH: "64"
+      CONAN_VISUAL_VERSIONS: 16
 
 # Clone directory
 #clone_folder: c:\projects\source
 
 install:
-  - cmd: set PATH=%PYTHON%;%PYTHON%/Scripts;%PATH%
+  - cmd: set PATH=%PATH%;%PYTHON%;%PYTHON%/Scripts
   - cmd: python --version
   - cmd: python -m pip install -U pip
   - cmd: echo "Downloading conan..."
-  - cmd: pip install conan
+  - cmd: pip install conan --upgrade
   - cmd: conan user # Create the conan data directory
   - cmd: conan --version
 
@@ -23,8 +24,8 @@ install:
 build_script:
   - cmd: mkdir build
   - cmd: cd build
-  - cmd: cmake -G "Visual Studio 16 2019" -A x64 ..
-  - cmd: cmake --build . --config RelWithDebInfo
+  - cmd: cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_TOOLCHAIN_FILE=conan_paths.cmake -DCMAKE_BUILD_TYPE=Release ..
+  - cmd: cmake --build . --config Release --target install
 
 # Custom test script
 test_script:
