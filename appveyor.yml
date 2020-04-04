@@ -23,7 +23,7 @@ install:
 build_script:
   - cmd: mkdir build
   - cmd: cd build
-  - cmd: cmake -G "Ninja" ..
+  - cmd: cmake -G "Visual Studio 16 2019" -A x64 -T v141 ..
   - cmd: cmake --build . --config RelWithDebInfo
 
 # Custom test script
