@@ -30,4 +30,4 @@ target_link_libraries(
   PUBLIC CONAN_PKG::gtest
   PRIVATE ${PROJLIB_TARGET} ${OPTIONS_TARGET})
 
-gtest_discover_tests(${TEST_TARGET})
+# gtest_discover_tests(${TEST_TARGET})

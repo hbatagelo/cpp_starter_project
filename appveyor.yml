@@ -8,9 +8,6 @@ environment:
       PYTHON_ARCH: "64"
       CONAN_VISUAL_VERSIONS: 16
 
-# Clone directory
-#clone_folder: c:\projects\source
-
 install:
   - cmd: set PATH=%PATH%;%PYTHON%;%PYTHON%/Scripts
   - cmd: python --version
@@ -32,5 +29,5 @@ test_script:
   - cmd: ctest -C Release -VV
 
 artifacts:
-  - path: 'build\src\Release\intro.exe'
+  - path: 'build\bin\intro.exe'
     name: cpp_starter_project
