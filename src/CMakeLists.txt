@@ -34,6 +34,17 @@ if(USE_OPENCV)
   target_link_libraries(${PROJ_TARGET} PRIVATE CONAN_PKG::opencv)
 endif()
 
+# Dear ImGui
+if(USE_IMGUI)
+  target_link_libraries(${PROJ_TARGET} PRIVATE CONAN_PKG::imgui-sfml)
+endif()
+
+# SDL
+if(USE_SDL)
+  find_package(SDL2 REQUIRED)
+  target_link_libraries(${PROJ_TARGET} PRIVATE CONAN_PKG::sdl2)
+endif()
+
 # Extra arguments for MSVC
 if(MSVC)
   target_compile_options(${PROJLIB_TARGET} PRIVATE /MP)

@@ -6,6 +6,15 @@
 #include <opencv2/core/types_c.h>
 #include <opencv2/opencv.hpp>
 
+#include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/System/Clock.hpp>
+#include <SFML/Window/Event.hpp>
+#include <imgui-SFML.h>
+#include <imgui.h>
+
+//#include <SDL2/SDL.h>
+
 #include "coin-flipper.hpp"
 #include "foo.hpp"
 
@@ -26,6 +35,8 @@ double MyRng::generate(const double min, const double max) {
 }
 
 int main() {
+  // SDL_Window *window = NULL;
+
   Eigen::MatrixXd m(2, 2);
   m(0, 0) = 3;
   m(1, 0) = 2.5;

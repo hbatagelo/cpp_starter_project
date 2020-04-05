@@ -68,9 +68,10 @@ if(USE_OPENCV)
 endif()
 
 # Dear ImGui
-option(USE_IMGUI "Use Dear ImGui" OFF)
+option(USE_IMGUI "Use Dear ImGui" ON)
 if(USE_IMGUI)
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} imgui-sfml/[>=2.1])
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
+                           imgui-sfml/[>=2.1]@bincrafters/stable)
   # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sfml:shared=False
   # sfml:graphics=True sfml:audio=False sfml:window=True
   # libalsa:disable_python=True)
@@ -79,7 +80,8 @@ endif()
 # SDL
 option(USE_SDL "Use SDL" OFF)
 if(USE_SDL)
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} sdl2/[>=2.0.12])
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
+                           sdl2/[>=2.0.12]@bincrafters/stable)
   # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl2:wayland=True)
 endif()
 

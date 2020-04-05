@@ -6,7 +6,6 @@ environment:
       PYTHON: "C:\\Python37-x64"
       PYTHON_VERSION: "3.7.x"
       PYTHON_ARCH: "64"
-      CONAN_VISUAL_VERSIONS: 16
 
 install:
   - cmd: set PATH=%PATH%;%PYTHON%;%PYTHON%/Scripts
