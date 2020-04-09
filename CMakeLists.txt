@@ -8,8 +8,8 @@ set(PROJ_TARGET intro)
 set(PROJLIB_TARGET introlib)
 set(TEST_TARGET tester)
 
-option(ENABLE_COVERAGE "Enable coverage reporting" OFF)
-option(BUILD_TESTING "Build the testing tree" ON)
+option(ENABLE_COVERAGE "Enable coverage reporting" FALSE)
+option(BUILD_TESTING "Build the testing tree" TRUE)
 
 # ccache, IPO and default configuration
 include(cmake/StandardProjectSettings.cmake)
@@ -37,7 +37,7 @@ enable_doxygen()
 include(cmake/StaticAnalyzers.cmake)
 
 # Very basic PCH example
-option(ENABLE_PCH "Enable Precompiled Headers" OFF)
+option(ENABLE_PCH "Enable Precompiled Headers" FALSE)
 if(ENABLE_PCH)
   # This sets a global PCH parameter, each project will build its own PCH, which
   # is a good idea if any #define's change
@@ -55,20 +55,20 @@ if(BUILD_TESTING)
 endif()
 
 # Eigen
-option(USE_EIGEN "Use Eigen" ON)
+option(USE_EIGEN "Use Eigen" TRUE)
 if(USE_EIGEN)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} eigen/[>=3.3.7])
 endif()
 
 # OpenCV
-option(USE_OPENCV "Use OpenCV" ON)
+option(USE_OPENCV "Use OpenCV" TRUE)
 if(USE_OPENCV)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
                            opencv/[>=4.1.1]@conan/stable)
 endif()
 
 # Dear ImGui
-option(USE_IMGUI "Use Dear ImGui" ON)
+option(USE_IMGUI "Use Dear ImGui" TRUE)
 if(USE_IMGUI)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
                            imgui-sfml/[>=2.1]@bincrafters/stable)
@@ -78,7 +78,7 @@ if(USE_IMGUI)
 endif()
 
 # SDL
-option(USE_SDL "Use SDL" OFF)
+option(USE_SDL "Use SDL" FALSE)
 if(USE_SDL)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
                            sdl2/[>=2.0.12]@bincrafters/stable)

@@ -1,0 +1,59 @@
+{
+  "buildType": {
+    "default": "Debug",
+    "choices": {
+      "debug": {
+        "short": "Debug",
+        "long": "Disable optimizations, include debug info and code coverage",
+        "linkage": "static",
+        "settings": {
+          "ENABLE_COVERAGE": "TRUE"
+        },
+        "buildType": "Debug"
+      },
+      "release": {
+        "short": "Release",
+        "long": "Enable optimizations, omit debug info",
+        "linkage": "static",
+        "buildType": "Release"
+      },
+      "minsize": {
+        "short": "MinSizeRel",
+        "long": "Optimize for smallest binary size",
+        "linkage": "static",
+        "buildType": "MinSizeRel"
+      },
+      "reldeb": {
+        "short": "RelWithDebInfo",
+        "long": "Perform optimizations AND include debugging information",
+        "linkage": "static",
+        "buildType": "RelWithDebInfo"
+      }
+    }
+  },
+  "useSanitizer": {
+    "default": "yes",
+    "choices": {
+      "yes": {
+        "short": "Sanitizers",
+        "long": "ASAN, UBSAN",
+        "settings": {
+          "ENABLE_SANITIZER_ADDRESS": "TRUE",
+          "ENABLE_SANITIZER_MEMORY": "FALSE",
+          "ENABLE_SANITIZER_THREAD": "FALSE",
+          "ENABLE_SANITIZER_UNDEFINED_BEHAVIOR": "TRUE"
+        }
+      },
+      "no": {
+        "short": "No sanitizers",
+        "long": "Disable sanitizers",
+        "settings": {
+          "ENABLE_SANITIZER_ADDRESS": "FALSE",
+          "ENABLE_SANITIZER_MEMORY": "FALSE",
+          "ENABLE_SANITIZER_THREAD": "FALSE",
+          "ENABLE_SANITIZER_UNDEFINED_BEHAVIOR": "FALSE"
+        }
+      }
+    }
+  }
+}

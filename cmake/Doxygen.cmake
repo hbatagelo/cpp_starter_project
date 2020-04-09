@@ -1,7 +1,7 @@
 # Enables doxygen doc builds
 function(enable_doxygen)
 
-  option(ENABLE_DOXYGEN "Enable doxygen doc builds of source" OFF)
+  option(ENABLE_DOXYGEN "Enable doxygen doc builds of source" FALSE)
 
   if(ENABLE_DOXYGEN)
     set(_DOXYGEN_CALLER_GRAPH ON)

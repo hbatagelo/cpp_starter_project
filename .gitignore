@@ -1,5 +1,11 @@
-# Cache/options directory used by clangd, Visual Studio and Visual Studio Code
+# Cache/options directory used by clangd
 .clangd
+
+# IntelliJ IDEA
+.idea
+*.iml
+
+# Visual Studio and VS Code
 .vs
 .vscode
 
