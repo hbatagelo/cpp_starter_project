@@ -2,10 +2,10 @@
 #define FOO_HPP
 
 class Foo {
-public:
+ public:
   static int bar(const int &i);
 };
 
 int independentMethod(const int &i);
 
-#endif // FOO_HPP
+#endif  // FOO_HPP

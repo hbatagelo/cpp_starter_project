@@ -83,11 +83,20 @@ if(USE_SDL)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
                            sdl2/[>=2.0.12]@bincrafters/stable)
   # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl2:wayland=True)
+
+  # WSL
+  set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl2:pulse=False)
 endif()
 
 # Conan
 include(cmake/Conan.cmake)
 run_conan()
+
+# Copy compile_commands.json to source directory
+add_custom_target(
+  copy-compile-commands ALL
+  ${CMAKE_COMMAND} -E copy_if_different
+  ${CMAKE_BINARY_DIR}/compile_commands.json ${CMAKE_SOURCE_DIR})
 
 # Tests
 

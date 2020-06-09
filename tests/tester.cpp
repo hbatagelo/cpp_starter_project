@@ -1,6 +1,6 @@
-#include <iostream>
-
 #include <gtest/gtest.h>
+
+#include <iostream>
 
 #include "foo.hpp"
 
@@ -30,7 +30,7 @@ TEST(FooMethod, Increases1) {
 
 // The fixture for testing class Foo. From google test primer.
 class FooTest : public ::testing::Test {
-protected:
+ protected:
   FooTest() = default;
   void SetUp() override {}
   void TearDown() override {}
@@ -44,7 +44,7 @@ protected:
 // test primer)
 TEST_F(FooTest, MethodBarDoesAbc) {
   auto i = 0;
-  i = Foo::bar(i); // we have access to p, declared in the fixture
+  i = Foo::bar(i);  // we have access to p, declared in the fixture
   EXPECT_EQ(1, i);
 }
 

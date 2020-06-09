@@ -1,8 +1,8 @@
-#include <iostream>
-#include <utility>
-
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+
+#include <iostream>
+#include <utility>
 
 #include "coin-flipper.hpp"
 
@@ -14,7 +14,7 @@ using ::testing::Return;
 using ::testing::Values;
 
 class MockRng : public Rng {
-public:
+ public:
   MOCK_METHOD(double, generate, (double, double), (override));
 };
 
@@ -43,7 +43,7 @@ TEST(CoinFlipper, ShouldReturnHeadsIfRandValueIsLessThanProbability) {
 
 class CoinFlipperTestFixture
     : public ::testing::TestWithParam<std::pair<double, CoinFlipper::Result>> {
-protected:
+ protected:
 };
 
 TEST_P(CoinFlipperTestFixture, CoinFlip) {

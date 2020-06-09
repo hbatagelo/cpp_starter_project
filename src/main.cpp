@@ -1,17 +1,16 @@
-#include <iostream>
-#include <memory>
-#include <random>
+#include <imgui-SFML.h>
+#include <imgui.h>
+#include <opencv2/core/types_c.h>
 
 #include <Eigen/Core>
-#include <opencv2/core/types_c.h>
-#include <opencv2/opencv.hpp>
-
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
-#include <imgui-SFML.h>
-#include <imgui.h>
+#include <iostream>
+#include <memory>
+#include <opencv2/opencv.hpp>
+#include <random>
 
 //#include <SDL2/SDL.h>
 
@@ -19,12 +18,12 @@
 #include "foo.hpp"
 
 class MyRng final : public Rng {
-public:
+ public:
   MyRng() : rng(std::make_unique<std::mt19937>(dev())) {}
 
   double generate(double min, double max) override;
 
-private:
+ private:
   std::random_device dev;
   std::unique_ptr<std::mt19937> rng;
 };
@@ -48,9 +47,7 @@ int main() {
 
   const auto x = 4;
   std::cout << x << "\n";
-
   std::cout << independentMethod(x) << "\n";
-
   std::cout << Foo::bar(x) << "\n";
 
   // Rng baseGenerator = Rng();

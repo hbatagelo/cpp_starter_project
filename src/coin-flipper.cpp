@@ -1,8 +1,8 @@
+#include "coin-flipper.hpp"
+
 #include <chrono>
 #include <iostream>
 #include <random>
-
-#include "coin-flipper.hpp"
 
 // double Rng::generate(double min, double max) {
 //   auto seed = std::chrono::system_clock::now().time_since_epoch().count();

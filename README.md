@@ -8,7 +8,7 @@ A barebones cross-platform C++ project with continuous integration using Conan f
 ## Build Requirements
 
 *   [CMake](https://cmake.org/download) 3.10 or greater.
-*   [Conan](https://conan.io/downloads.html) package manager.
+*   [Conan](https://conan.io/downloads.html).
 *   C++20-standard-compliant compiler.
 
 ## Installation
