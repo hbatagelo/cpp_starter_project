@@ -73,8 +73,11 @@ int main() {
   cv::Mat output = cv::Mat::zeros(120, 350, CV_8UC3);
 
   // write text on the matrix:
-  putText(output, "Hello World :)", cvPoint(15, 70), cv::FONT_HERSHEY_PLAIN, 3,
-          cvScalar(0, 255, 0), 4);
+  // putText(output, "Hello World :)", cvPoint(15, 70), cv::FONT_HERSHEY_PLAIN,
+  // 3, cvScalar(0, 255, 0), 4);
+
+  // cv::imshow("test", output);
+  // cv::waitKey(0);
 
   return 0;
 }

@@ -65,6 +65,7 @@ option(USE_OPENCV "Use OpenCV" TRUE)
 if(USE_OPENCV)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
                            opencv/[>=4.1.1]@conan/stable)
+  set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} opencv:gtk=3)
 endif()
 
 # Dear ImGui
@@ -81,11 +82,12 @@ endif()
 option(USE_SDL "Use SDL" FALSE)
 if(USE_SDL)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
-                           sdl2/[>=2.0.12]@bincrafters/stable)
-  # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl2:wayland=True)
+                           sdl2/2.0.9@bincrafters/stable)
 
   # WSL
-  set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl2:pulse=False)
+  if(${CMAKE_SYSTEM} MATCHES "(M|m)icrosoft")
+    set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl2:pulse=False)
+  endif()
 endif()
 
 # Conan

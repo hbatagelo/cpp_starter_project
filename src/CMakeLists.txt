@@ -23,7 +23,6 @@ endif()
 
 # OpenCV
 if(USE_OPENCV)
-  set(OpenCV_STATIC TRUE)
   find_package(OpenCV REQUIRED)
   target_include_directories(${PROJ_TARGET}
                              PRIVATE ${CONAN_OPENCV_ROOT}/include)
@@ -48,9 +47,8 @@ if(MSVC)
 endif()
 
 # Post build
-if(ENABLE_COVERAGE)
-  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES
-                                            "Clang")
+if(ENABLE_COVERAGE MATCHES "TRUE")
+  if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
     add_custom_command(
       TARGET ${PROJ_TARGET}
       POST_BUILD
