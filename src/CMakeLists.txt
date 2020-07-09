@@ -23,6 +23,7 @@ endif()
 
 # OpenCV
 if(USE_OPENCV)
+  set(BUILD_SHARED_LIBS OFF)
   find_package(OpenCV REQUIRED)
   target_include_directories(${PROJ_TARGET}
                              PRIVATE ${CONAN_OPENCV_ROOT}/include)
