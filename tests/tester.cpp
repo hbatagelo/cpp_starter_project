@@ -23,7 +23,6 @@ TEST(IndependentMethod, ResetsToZero2) {
 
 TEST(FooMethod, Increases1) {
   auto i = 0;
-  Foo p;
   i = Foo::bar(i);
   EXPECT_EQ(1, i);
 }
