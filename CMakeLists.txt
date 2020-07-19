@@ -51,7 +51,7 @@ set(CONAN_EXTRA_OPTIONS "")
 
 # Google Tests
 if(BUILD_TESTING)
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} gtest/[>=1.10.0])
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} gtest/1.10.0)
 endif()
 
 # Eigen
