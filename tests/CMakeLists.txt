@@ -17,8 +17,8 @@ target_include_directories(
   PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/include
           ${CONAN_GTEST_ROOT}/include)
 
-# Use C++20
-target_compile_features(${TEST_TARGET} PRIVATE cxx_std_20)
+# Use C++17
+target_compile_features(${TEST_TARGET} PRIVATE cxx_std_17)
 
 # Standard linking to gtest stuff
 
