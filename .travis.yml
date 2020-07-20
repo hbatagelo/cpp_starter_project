@@ -48,6 +48,7 @@ matrix:
             - libgl1-mesa-dev
             - xorg-dev
             - libxcb-render-util0-dev
+            - libxcb-xkb-dev
       env:
         - MATRIX_EVAL="CC=clang-9 && CXX=clang++-9"
 
@@ -62,6 +63,7 @@ matrix:
             - libgl1-mesa-dev
             - xorg-dev
             - libxcb-render-util0-dev
+            - libxcb-xkb-dev
       env:
         - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
         - GCOV="gcov-9"
