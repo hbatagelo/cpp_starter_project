@@ -49,6 +49,7 @@ matrix:
             - xorg-dev
             - libxcb-render-util0-dev
             - libxcb-xkb-dev
+            - libxcb-icccm4-dev
       env:
         - MATRIX_EVAL="CC=clang-9 && CXX=clang++-9"
 
@@ -64,6 +65,7 @@ matrix:
             - xorg-dev
             - libxcb-render-util0-dev
             - libxcb-xkb-dev
+            - libxcb-icccm4-dev
       env:
         - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
         - GCOV="gcov-9"
