@@ -45,6 +45,7 @@ matrix:
           packages:
             - clang-9
             - doxygen
+            - libgl1-mesa-dev
       env:
         - MATRIX_EVAL="CC=clang-9 && CXX=clang++-9"
 
@@ -56,6 +57,7 @@ matrix:
           packages:
             - g++-9
             - doxygen
+            - libgl1-mesa-dev
       env:
         - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
         - GCOV="gcov-9"
