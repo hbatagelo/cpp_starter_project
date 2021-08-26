@@ -1,26 +1,17 @@
-version: 1.0.{build}
+image:
+  - Visual Studio 2019
+clone_folder: C:\projects
 
 environment:
-  matrix:
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      PYTHON: "C:\\Python37-x64"
-      PYTHON_VERSION: "3.7.x"
-      PYTHON_ARCH: "64"
-
-install:
-  - cmd: set PATH=%PATH%;%PYTHON%;%PYTHON%/Scripts
-  - cmd: python --version
-  - cmd: python -m pip install -U pip
-  - cmd: echo "Downloading conan..."
-  - cmd: pip install conan --upgrade
-  - cmd: conan user # Create the conan data directory
-  - cmd: conan --version
+  PYTHON: "C:\\Python38-x64\\python.exe"
 
 # Custom build script
 build_script:
   - cmd: mkdir build
   - cmd: cd build
-  - cmd: cmake -G "Visual Studio 15 2017" -A x64 -DCMAKE_BUILD_TYPE=Release ..
+  - cmd: set PATH=%PATH%;C:\Users\appveyor\AppData\Roaming\Python\Python38\Scripts
+  - cmd: "%PYTHON%" -m pip install --user conan
+  - cmd: cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release ..
   - cmd: cmake --build . --config Release
 
 # Custom test script
