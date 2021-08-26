@@ -5,7 +5,7 @@ set -eo pipefail
 mkdir -p build && cd build
 
 # Configure
-cmake -DENABLE_COVERAGE=TRUE \
+cmake -DENABLE_COVERAGE=ON \
       -DCMAKE_BUILD_TYPE=Debug \
       ..
 
@@ -17,7 +17,7 @@ echo -e "\e[93m-- Running tests\e[39m"
 ctest -j $(nproc) --output-on-failure -VV
 
 # Coverage
-COV=$(cmake -LA -N . | grep ENABLE_COVERAGE:BOOL=TRUE)
+COV=$(cmake -LA -N . | grep ENABLE_COVERAGE:BOOL=ON)
 if [[ ! -z "$COV" && -z ${TRAVIS} ]]; then # Does CMake's cache has ENABLE_COVERAGE:BOOL=ON?
     # Generate coverage report
     if command -v lcov >/dev/null 2>&1; then # Does lcov exist?

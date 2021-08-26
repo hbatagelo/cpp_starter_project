@@ -8,8 +8,8 @@ set(PROJ_TARGET intro)
 set(PROJLIB_TARGET introlib)
 set(TEST_TARGET tester)
 
-option(ENABLE_COVERAGE "Enable coverage reporting" FALSE)
-option(BUILD_TESTING "Build the testing tree" TRUE)
+option(BUILD_SHARED_LIBS "Enable compilation of shared libraries" OFF)
+option(ENABLE_TESTING "Enable test builds" ON)
 
 # ccache, IPO and default configuration
 include(cmake/StandardProjectSettings.cmake)
@@ -17,6 +17,15 @@ include(cmake/StandardProjectSettings.cmake)
 # Link this 'library' to set the c++ standard / compile-time options requested
 add_library(${OPTIONS_TARGET} INTERFACE)
 target_compile_features(${OPTIONS_TARGET} INTERFACE cxx_std_20)
+
+if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
+  option(ENABLE_BUILD_WITH_TIME_TRACE
+         "Enable -ftime-trace to generate time tracing .json files on clang"
+         OFF)
+  if(ENABLE_BUILD_WITH_TIME_TRACE)
+    target_compile_options(project_options INTERFACE -ftime-trace)
+  endif()
+endif()
 
 # Link this 'library' to use the warnings specified in CompilerWarnings.cmake
 add_library(${WARNINGS_TARGET} INTERFACE)
@@ -37,7 +46,7 @@ enable_doxygen()
 include(cmake/StaticAnalyzers.cmake)
 
 # Very basic PCH example
-option(ENABLE_PCH "Enable Precompiled Headers" FALSE)
+option(ENABLE_PCH "Enable Precompiled Headers" OFF)
 if(ENABLE_PCH)
   # This sets a global PCH parameter, each project will build its own PCH, which
   # is a good idea if any #define's change
@@ -50,40 +59,38 @@ set(CONAN_EXTRA_REQUIRES "")
 set(CONAN_EXTRA_OPTIONS "")
 
 # Google Tests
-if(BUILD_TESTING)
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} gtest/1.10.0)
+if(ENABLE_TESTING)
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} gtest/1.11.0)
 endif()
 
 # Eigen
-option(USE_EIGEN "Use Eigen" TRUE)
+option(USE_EIGEN "Use Eigen" ON)
 if(USE_EIGEN)
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} eigen/[>=3.3.7])
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} eigen/3.3.9)
 endif()
 
 # OpenCV
-option(USE_OPENCV "Use OpenCV" TRUE)
+option(USE_OPENCV "Use OpenCV" ON)
 if(USE_OPENCV)
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
-                           opencv/[>=4.3.0]@conan/stable)
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} opencv/4.5.2)
   # if(NOT MSVC) set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} opencv:gtk=3)
   # endif()
 endif()
 
 # Dear ImGui
-option(USE_IMGUI "Use Dear ImGui" TRUE)
+option(USE_IMGUI "Use Dear ImGui" ON)
 if(USE_IMGUI)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
-                           imgui-sfml/[>=2.1]@bincrafters/stable)
+                           imgui-sfml/2.1@bincrafters/stable)
   # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sfml:shared=False
   # sfml:graphics=True sfml:audio=False sfml:window=True
   # libalsa:disable_python=True)
 endif()
 
 # SDL
-option(USE_SDL "Use SDL" FALSE)
+option(USE_SDL "Use SDL" OFF)
 if(USE_SDL)
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
-                           sdl2/2.0.9@bincrafters/stable)
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} sdl2/2.0.16)
 
   # WSL
   if(${CMAKE_SYSTEM} MATCHES "(M|m)icrosoft")
@@ -92,8 +99,11 @@ if(USE_SDL)
 endif()
 
 # Conan
-include(cmake/Conan.cmake)
-run_conan()
+option(ENABLE_CONAN "Use Conan for dependency management" ON)
+if(ENABLE_CONAN)
+  include(cmake/Conan.cmake)
+  run_conan()
+endif()
 
 # Copy compile_commands.json to source directory
 if(NOT DEFINED ENV{APPVEYOR})
@@ -107,12 +117,11 @@ endif()
 
 # Only build tests if we are the top-level project Allows this to be used by
 # super projects with `add_subdirectory`
-if(BUILD_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
+if(ENABLE_TESTING AND (PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR))
   enable_testing()
   add_subdirectory(tests)
   # Disable IPO for tests
-  set_property(TARGET ${TEST_TARGET} PROPERTY INTERPROCEDURAL_OPTIMIZATION
-                                              FALSE)
+  set_property(TARGET ${TEST_TARGET} PROPERTY INTERPROCEDURAL_OPTIMIZATION OFF)
 endif()
 
 # Define project sources

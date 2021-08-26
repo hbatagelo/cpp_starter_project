@@ -1,5 +1,6 @@
 # Cache/options directory used by clangd
 .clangd
+.cache
 
 # IntelliJ IDEA
 .idea

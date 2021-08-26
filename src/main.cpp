@@ -1,6 +1,5 @@
 #include <imgui-SFML.h>
 #include <imgui.h>
-#include <opencv2/core/types_c.h>
 
 #include <Eigen/Core>
 #include <SFML/Graphics/CircleShape.hpp>
@@ -50,9 +49,6 @@ int main() {
   std::cout << independentMethod(x) << "\n";
   std::cout << Foo::bar(x) << "\n";
 
-  // Rng baseGenerator = Rng();
-  // std::cout << baseGenerator.generate(0.0, 1.0) << "\n";
-
   MyRng myGenerator;
 
   // Create a game
@@ -70,12 +66,11 @@ int main() {
   // OpenCV
 
   // initialize a 120X350 matrix of black pixels:
-  cv::Mat output = cv::Mat::zeros(120, 350, CV_8UC3);
+  // cv::Mat output = cv::Mat::zeros(120, 350, CV_8UC3);
 
   // write text on the matrix:
   // putText(output, "Hello World :)", cvPoint(15, 70), cv::FONT_HERSHEY_PLAIN,
-  // 3,
-  //         cvScalar(0, 255, 0), 4);
+  // 3, cvScalar(0, 255, 0), 4);
 
   // cv::imshow("test", output);
   // cv::waitKey(0);

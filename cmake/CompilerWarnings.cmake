@@ -62,6 +62,8 @@ function(set_project_warnings project_target)
       -Wdouble-promotion # warn if float is implicit promoted to double
       -Wformat=2 # warn on security issues around functions that format output
                  # (ie printf)
+      -Wimplicit-fallthrough # warn on statements that fallthrough without an
+                             # explicit annotation
   )
 
   # Whether warnings are treated as errors
@@ -87,10 +89,14 @@ function(set_project_warnings project_target)
   # Set warnings
   if(MSVC)
     set(_PROJECT_WARNINGS ${_MSVC_WARNINGS})
-  elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  elseif(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
     set(_PROJECT_WARNINGS ${_CLANG_WARNINGS})
-  else()
+  elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     set(_PROJECT_WARNINGS ${_GCC_WARNINGS})
+  else()
+    message(
+      AUTHOR_WARNING
+        "No compiler warnings set for '${CMAKE_CXX_COMPILER_ID}' compiler.")
   endif()
   target_compile_options(${project_target} INTERFACE ${_PROJECT_WARNINGS})
 

@@ -20,14 +20,11 @@ target_include_directories(
 # Use C++20
 target_compile_features(${TEST_TARGET} PRIVATE cxx_std_20)
 
-# Standard linking to gtest stuff
-
-# target_link_libraries(${TEST_TARGET} PRIVATE gtest gtest_main gmock
-# gmock_main)
+find_package(GTest CONFIG)
 
 target_link_libraries(
   ${TEST_TARGET}
-  PUBLIC CONAN_PKG::gtest
+  PUBLIC GTest::gtest_main GTest::gmock GTest::gtest
   PRIVATE ${PROJLIB_TARGET} ${OPTIONS_TARGET})
 
 # gtest_discover_tests(${TEST_TARGET})

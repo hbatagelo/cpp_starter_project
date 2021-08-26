@@ -27,7 +27,7 @@ addons:
   coverity_scan:
     project:
       name: "hbatagelo/cpp_starter_project"
-      description: "A barebones C++ project with CI"
+      description: "C++ template project using Conan and CMake"
     notification_email: harlen.batagelo@gmail.com
     build_command_prepend: "./build.sh"
     build_command: ""
