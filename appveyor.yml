@@ -7,13 +7,12 @@ environment:
 
 # Custom build script
 build_script:
-- cmd: >-
-  mkdir build
-  cd build
-  set PATH=%PATH%;C:\Users\appveyor\AppData\Roaming\Python\Python38\Scripts
-  "%PYTHON%" -m pip install --user conan
-  cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release ..
-  cmake --build . --config Release
+  - cmd: mkdir build
+  - cmd: cd build
+  - cmd: set PATH=%PATH%;C:\Users\appveyor\AppData\Roaming\Python\Python38\Scripts
+  - cmd: "%PYTHON%" -m pip install --user conan
+  - cmd: cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release ..
+  - cmd: cmake --build . --config Release
 
 # Custom test script
 test_script:
