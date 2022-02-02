@@ -66,13 +66,19 @@ endif()
 # Eigen
 option(USE_EIGEN "Use Eigen" ON)
 if(USE_EIGEN)
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} eigen/3.3.9)
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} eigen/3.4.0)
 endif()
 
 # OpenCV
 option(USE_OPENCV "Use OpenCV" ON)
 if(USE_OPENCV)
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} opencv/4.5.2)
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} opencv/4.5.3)
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} freetype/2.11.1)
+  set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} opencv:with_eigen=False)
+  set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} opencv:with_webp=False)
+  set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} opencv:with_gtk=False)
+  set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} opencv:with_quirc=False)
+  set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} opencv:with_ffmpeg=False)
   # if(NOT MSVC) set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} opencv:gtk=3)
   # endif()
 endif()
@@ -81,7 +87,7 @@ endif()
 option(USE_IMGUI "Use Dear ImGui" ON)
 if(USE_IMGUI)
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES}
-                           imgui-sfml/2.1@bincrafters/stable)
+                           imgui-sfml/2.5@bincrafters/stable)
   # set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sfml:shared=False
   # sfml:graphics=True sfml:audio=False sfml:window=True
   # libalsa:disable_python=True)
@@ -90,7 +96,7 @@ endif()
 # SDL
 option(USE_SDL "Use SDL" OFF)
 if(USE_SDL)
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} sdl2/2.0.16)
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} sdl2/2.0.20)
 
   # WSL
   if(${CMAKE_SYSTEM} MATCHES "(M|m)icrosoft")
