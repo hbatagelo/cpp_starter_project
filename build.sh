@@ -10,15 +10,15 @@ cmake -DENABLE_COVERAGE=ON \
       ..
 
 # Build
-cmake --build . --config Debug -- -j $(nproc)
+cmake --build . --config Debug -- -j "$(nproc)"
 
 # Test
 echo -e "\e[93m-- Running tests\e[39m"
-ctest -j $(nproc) --output-on-failure -VV
+ctest -j "$(nproc)" --output-on-failure -VV
 
 # Coverage
 COV=$(cmake -LA -N . | grep ENABLE_COVERAGE:BOOL=ON)
-if [[ ! -z "$COV" && -z ${TRAVIS} ]]; then # Does CMake's cache has ENABLE_COVERAGE:BOOL=ON?
+if [[ -n "$COV" && -z ${TRAVIS} ]]; then # Does CMake's cache has ENABLE_COVERAGE:BOOL=ON?
     # Generate coverage report
     if command -v lcov >/dev/null 2>&1; then # Does lcov exist?
         printf '\n'
